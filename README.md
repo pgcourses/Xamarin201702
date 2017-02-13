@@ -63,7 +63,7 @@ Akinek még nincs Mac számítógépe, annak egyik lehetőség például egy [Ma
 
 - telepítve és megfelelően konfigurálva kell, hogy legyen a [Xamarin.iOS](https://developer.xamarin.com/guides/ios/getting_started/installation/mac/).
 
-Mivel én a MacInCloud-ot használom, ezért a tanfolyamon ezt fogom tudni megmutatni.
+A MacInCloud szolgáltatással elérhető gépeken ez már előre van telepítve, a tanfolyamon ilyen gépet használok, ezért ezt fogom tudni megmutatni.
 
 Ha nem csak emulátorban szeretnénk futtatni alkalmazásunkat, akkor a következő lehetőségeink vannak.
 
@@ -74,3 +74,6 @@ Ha nem ez a helyzet, vagy nem csak egyetlen telefonon időkódos kipróbálásra
 ### HockeyApp regisztráció
 
 A [HockeyApp](http://hockeyapp.net/) egy alkalmazás disztribúciós szolgáltatás, ami két alkalmazásig ingyenesen használható. A tanfolyamon az általunk gyártott alkalmazásból kettő lesz, egy Androidos és egy iOS-es, így az ingyenes terv keretein belül fogjuk tudni több telefonra is telepíteni a végeredményt.
+
+### Megjegyzés
+Ha valakinek nincs Androidos vagy iOS-es eszköze, attól még fogja tudni követni a tanfolyamot, és mivel felvétel készül később, ha mégis ilyen feladat kerül elő, felvételről át fogja tudni ismételni.

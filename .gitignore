@@ -250,3 +250,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/Day1/Day1/Day1.Droid/hu.netacademia.Day1.Droid.apk

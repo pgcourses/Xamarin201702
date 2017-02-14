@@ -14,15 +14,51 @@ namespace Day1
             // The root page of your application
             var content = new ContentPage
             {
-                Title = "Day1",
+                Title = "Feljegyzések",
+
                 Content = new StackLayout
                 {
-                    VerticalOptions = LayoutOptions.Center,
                     Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
+                        new Label { Text = "Új feladat rögzítése!" },
+                        new Entry { Placeholder = "A feladat leírása" },
+                        new Picker { Title = "Fontosság", Items = { "Sürgős","Normál","Ráér" } },
+                        new StackLayout
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            Children =
+                            {
+                                new Label { Text = "Határnap" },
+                                new DatePicker { }
+                            }
+                        },
+                        new StackLayout
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            Children =
+                            {
+                                new Label { Text = "Határidő" },
+                                new TimePicker { }
+                            }
+                        },
+                        new StackLayout
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            Children =
+                            {
+                                new Label { Text = "Elintézve" },
+                                new Switch { IsToggled = false}
+                            }
+                        },
+                        new StackLayout
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            Children =
+                            {
+                                new Button { Text = "Mégsem" },
+                                new Button { Text = "Mentés"}
+                            }
+                        },
+
                     }
                 }
             };

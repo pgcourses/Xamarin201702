@@ -62,7 +62,7 @@ A felugró ablakban adjuk meg a tanusítvány jelszavát.
 
 ![](images/android11.png?raw=true) 
 
-## Alkalmazás telepítése
+## Alkalmazás feltöltése a HockeyApp-ra
 Nyissuk meg a HockeyApp oldalunkat, és hozzunk létre egy Alkalmazást a **New App** gombbal. A felugró ablakba húzzuk be az előző pontban lementett apk csomagot.
 
 ![](images/android12.png?raw=true) 

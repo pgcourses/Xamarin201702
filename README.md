@@ -1,6 +1,10 @@
 # Xamarin201702
 Kódtár kiegészítés a NetAcademia Xamarin tanfolyamához: http://www.netacademia.hu/xamarin-xamarin-fejlesztes-mobileszkozokre
 
+## Telepítés tesztre
+
+Az [Android](https://github.com/Xamarin201702/Xamarin201702/blob/master/Android.md) és az [iOS](https://github.com/Xamarin201702/Xamarin201702/blob/master/iOS.md) alkalmazásainkat ezek szerint a leírások szerint kell előkészíteni és feltölteni a HockeyApp-ra.
+
 ## Összefoglalás
 Ezen a tanfolyamon Windows platformon, C# nyelven Visual Studio 2015 Community és Xamarin.Forms segítségével olyan alkalmazásokat fogunk írni, amelyeket az adott platformra fordítva natív alkalmazásokat kapunk Windows, Android és iOS környezetben. A tanfolyam elsősorban C#/.NET fejlesztőknek hasznos, hiszen így a C# nyelv segítségével kiszabadulunk a Windows környezetből különböző mobil platformokra.
 

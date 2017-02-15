@@ -1,4 +1,4 @@
-# Fordítás Android platformra és a telepítés Android készülékre HockeyApp használatával
+# Fordítás Android platformra és feltöltés a HockeyApp-ra, hogy telepíteni tudjunk Android készülékre az Interneten keresztül
 
 ## Alkalmazás felkészítése a telepítésre
 

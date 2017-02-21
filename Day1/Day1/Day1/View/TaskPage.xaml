@@ -5,8 +5,8 @@
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Új feladat" />
-      <Entry Placeholder="Új feladat leírása" />
-      <Picker Title="Fontosság">
+      <Entry x:Name="entryTitle" Placeholder="Új feladat leírása" />
+      <Picker x:Name="pickerPriority" Title="Fontosság">
         <Picker.Items>
           <x:String>Ráér</x:String>
           <x:String>Normál</x:String>
@@ -16,20 +16,20 @@
       </Picker>
       <StackLayout Orientation="Horizontal">
         <Label Text="Határnap" />
-        <DatePicker />
+        <DatePicker x:Name="dueDate" />
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="Határidő" />
-        <TimePicker />
+        <TimePicker x:Name="dueTime" />
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="Elintézve" />
-        <Switch />
+        <Switch x:Name="switchSolved"/>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Button Text="Mégsem" />
-        <Button Text="Mentés" />
-        <Button Text="Lista" />
+        <Button Text="Mégsem" Clicked="btnCancel_Clicked" />
+        <Button Text="Mentés" Clicked="btnSave_Clicked" />
+        <Button Text="Lista" Clicked="btnList_Clicked" />
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>

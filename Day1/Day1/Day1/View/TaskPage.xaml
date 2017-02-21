@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Day1.View.TaskPage">
+  <ContentPage.Content>
+    <StackLayout>
+      <Label Text="Új feladat" />
+      <Entry Placeholder="Új feladat leírása" />
+      <Picker Title="Fontosság">
+        <Picker.Items>
+          <x:String>Ráér</x:String>
+          <x:String>Normál</x:String>
+          <x:String>Sürgős</x:String>
+        </Picker.Items>
+        <Picker.SelectedIndex>1</Picker.SelectedIndex>
+      </Picker>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Határnap" />
+        <DatePicker />
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Határidő" />
+        <TimePicker />
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Elintézve" />
+        <Switch />
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Button Text="Mégsem" />
+        <Button Text="Mentés" />
+        <Button Text="Lista" />
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

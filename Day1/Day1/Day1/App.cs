@@ -13,7 +13,7 @@ namespace Day1
         public App()
         {
             // The root page of your application
-            MainPage = new NavigationPage(new TaskView());
+            MainPage = new NavigationPage(new TaskPage());
         }
 
         protected override void OnStart()

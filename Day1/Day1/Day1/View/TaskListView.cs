@@ -18,7 +18,7 @@ namespace Day1.View
                 lblTitle.SetBinding(Label.TextProperty, "Title");
 
                 var lblPriority = new Label { FontSize=18 };
-                lblPriority.SetBinding(Label.TextProperty, "Priority");
+                lblPriority.SetBinding(Label.TextProperty, "PriorityText");
 
                 var cell = new ViewCell {
                     View = new StackLayout {
@@ -43,6 +43,7 @@ namespace Day1.View
             });
 
             Content = new ListView {
+                HasUnevenRows = true,
                 ItemsSource = vm,
                 ItemTemplate = dataTemplate
             };

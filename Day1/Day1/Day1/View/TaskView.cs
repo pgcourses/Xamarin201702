@@ -17,6 +17,7 @@ namespace Day1.View
         Switch switchSolved = new Switch { IsToggled = false };
         Button btnCancel = new Button { Text = "Mégsem" };
         Button btnSave = new Button { Text = "Mentés" };
+        Button btnList = new Button { Text = "Lista" };
 
         TaskViewModel vm;
 
@@ -33,6 +34,7 @@ namespace Day1.View
         {
             btnCancel.Clicked += btnCancel_Clicked;
             btnSave.Clicked += btnSave_Clicked;
+            btnList.Clicked += btnList_Clicked;
 
             ResetData();
 
@@ -75,11 +77,17 @@ namespace Day1.View
                             Children =
                             {
                                 btnCancel,
-                                btnSave
+                                btnSave,
+                                btnList
                             }
                         },
                     }
             };
+        }
+
+        private void btnList_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TaskListView(list));
         }
 
         private void btnSave_Clicked(object sender, EventArgs e)

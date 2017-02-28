@@ -79,5 +79,7 @@ Ha nem ez a helyzet, vagy nem csak egyetlen telefonon időkódos kipróbálásra
 
 A [HockeyApp](http://hockeyapp.net/) egy alkalmazás disztribúciós szolgáltatás, ami két alkalmazásig ingyenesen használható. A tanfolyamon az általunk gyártott alkalmazásból kettő lesz, egy Androidos és egy iOS-es, így az ingyenes terv keretein belül fogjuk tudni több telefonra is telepíteni a végeredményt.
 
+Ahhoz, hogy a telefonra telepített alkalmazásunk a hibaüzeneteket (crash) felküldje, a következő lépéseket kell elvégezni. [Részletek itt](https://components.xamarin.com/gettingstarted/hockeyappandroid)
+
 ### Megjegyzés
 Ha valakinek nincs Androidos vagy iOS-es eszköze, attól még fogja tudni követni a tanfolyamot, és mivel felvétel készül később, ha mégis ilyen feladat kerül elő, felvételről át fogja tudni ismételni.

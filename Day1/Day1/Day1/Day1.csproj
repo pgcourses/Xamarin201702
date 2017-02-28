@@ -38,10 +38,16 @@
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\TaskViewModel.cs" />
+    <Compile Include="View\TabbedTaskPage.xaml.cs">
+      <DependentUpon>TabbedTaskPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TaskListPage.xaml.cs">
       <DependentUpon>TaskListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TaskListView.cs" />
+    <Compile Include="View\TaskPageGrid.xaml.cs">
+      <DependentUpon>TaskPageGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TaskPage.xaml.cs">
       <DependentUpon>TaskPage.xaml</DependentUpon>
     </Compile>
@@ -77,6 +83,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\TaskListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\TabbedTaskPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\TaskPageGrid.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

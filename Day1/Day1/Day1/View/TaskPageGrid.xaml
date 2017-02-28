@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Day1.View.TaskPageGrid"
+             Title="TaskPageGrid">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Text="Új feladat:" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Entry x:Name="entryTitle" Placeholder="Új feladat leírása" Grid.Column="1"/>
+            <Label Text="Fontosság:" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Picker x:Name="pickerPriority" Grid.Row="1" Grid.Column="1">
+                <Picker.Items>
+                    <x:String>Ráér</x:String>
+                    <x:String>Normál</x:String>
+                    <x:String>Sürgős</x:String>
+                </Picker.Items>
+                <Picker.SelectedIndex>1</Picker.SelectedIndex>
+            </Picker>
+            <Label Text="Határnapot ide nekem de azonnal:" 
+                   Grid.Row="2" 
+                   Grid.Column="0" 
+                   HorizontalTextAlignment="End"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="End"/>
+            <DatePicker x:Name="dueDate"  Grid.Row="2" Grid.Column="1"/>
+            <Label Text="Határidő:"  Grid.Row="3" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End"/>
+            <TimePicker x:Name="dueTime" Grid.Row="3" Grid.Column="1"/>
+
+            <Label Text="Elintézve:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Switch x:Name="switchSolved" Grid.Row="4" Grid.Column="1"/>
+            <Grid Grid.Row="5" Grid.ColumnSpan="2">
+                <Button Text="Mégsem" Clicked="btnCancel_Clicked" HorizontalOptions="Start"/>
+                <Button Text="Mentés" Clicked="btnSave_Clicked" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Lista" Clicked="btnList_Clicked" HorizontalOptions="End"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

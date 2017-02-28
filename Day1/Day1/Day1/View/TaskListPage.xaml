@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Day1.View.TaskListPage">
+    <ListView x:Name="lvwTaskList" HasUnevenRows="False" >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <!-- Itt lehetne használni: TextCell, EntryCell, SwitchCell, ImageCell -->
+                <ViewCell>
+                    <StackLayout Padding="5">
+                        <Label FontSize="30" Text="{Binding Title}"/>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="Prioritás:" VerticalTextAlignment="Center"/>
+                            <Label FontSize="18" Text="{Binding PriorityText}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

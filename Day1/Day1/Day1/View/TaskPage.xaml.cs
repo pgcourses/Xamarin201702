@@ -33,7 +33,7 @@ namespace Day1.View
 
         private void btnList_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TaskListView(list));
+            Navigation.PushAsync(new TaskListPage(list));
         }
 
         private void btnSave_Clicked(object sender, EventArgs e)
@@ -55,7 +55,6 @@ namespace Day1.View
         {
             ResetData();
         }
-
 
     }
 }

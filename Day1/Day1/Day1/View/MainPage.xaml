@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Day1.View.MainPage">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:c="clr-namespace:Day1.Converter" 
+            x:Class="Day1.View.MainPage">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <c:NegateBoolConverter x:Key="negateBoolConverter" />
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <TabbedPage.ItemTemplate>
         <DataTemplate>
             <ContentPage Title="{Binding Title}">
@@ -36,6 +42,12 @@
                         <Button x:Name="btnSave" Clicked="btnSave_Clicked"  Text="Mentés" Grid.Row="1" Grid.Column="0"/>
                         <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
                     </Grid>
+                    <Button Text="+" 
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                            Margin="20"
+                            IsVisible="{Binding IsLastPage, Converter={StaticResource negateBoolConverter}}"
+                            />
                 </AbsoluteLayout>
             </ContentPage>
         </DataTemplate>

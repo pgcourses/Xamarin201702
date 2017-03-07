@@ -1,6 +1,7 @@
 ﻿using Day1.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Day1.Model
     {
         public IList<MyList> GetLists()
         {
-            return new List<MyList>
+            return new ObservableCollection<MyList>
             {
                 new MyList {
                     Title ="Ez az első lista",

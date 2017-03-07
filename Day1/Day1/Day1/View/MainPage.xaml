@@ -32,9 +32,9 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Entry Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
-                        <Button Text="Mentés" Grid.Row="1" Grid.Column="0"/>
-                        <Button Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
+                        <Entry x:Name="entryNewListName" Text="{Binding NewListName, Mode=TwoWay}" Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
+                        <Button x:Name="btnSave" Clicked="btnSave_Clicked"  Text="Mentés" Grid.Row="1" Grid.Column="0"/>
+                        <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
                     </Grid>
                 </AbsoluteLayout>
             </ContentPage>

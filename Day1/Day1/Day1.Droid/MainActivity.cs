@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using HockeyApp.Android;
+using Day1.ViewModel;
+using Day1.Droid;
 
 namespace Day1.Droid
 {

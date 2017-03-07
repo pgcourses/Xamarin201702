@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Day1.ViewModel
 {
-    public class TaskViewModel
+ 
+    public class TaskViewModel 
     {
         public static readonly string[] PriorityTexts = { "Ráér", "Normál", "Sürgős" };
-
 
         public string Title { get; set; }
         public int Priority { get; set; } = 1;
@@ -19,6 +20,4 @@ namespace Day1.ViewModel
         public bool IsSolved { get; set; }
 
     }
-
-
 }

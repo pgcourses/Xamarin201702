@@ -5,6 +5,7 @@
              x:Class="Day1.View.TabbedTaskPage"
              Title="Saját Tabbed"
             >
+    <pages:AbsoluteExample/>
     <pages:TaskPageGrid/>
     <pages:TaskPage/>
 </TabbedPage>

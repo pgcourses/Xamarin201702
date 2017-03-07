@@ -32,12 +32,11 @@
                    Grid.Row="2" 
                    Grid.Column="0" 
                    HorizontalTextAlignment="End"
-                   VerticalOptions="Center" 
+                   VerticalOptions="Center"
                    HorizontalOptions="End"/>
             <DatePicker x:Name="dueDate"  Grid.Row="2" Grid.Column="1"/>
             <Label Text="Határidő:"  Grid.Row="3" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End"/>
             <TimePicker x:Name="dueTime" Grid.Row="3" Grid.Column="1"/>
-
             <Label Text="Elintézve:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End"/>
             <Switch x:Name="switchSolved" Grid.Row="4" Grid.Column="1"/>
             <Grid Grid.Row="5" Grid.ColumnSpan="2">

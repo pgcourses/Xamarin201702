@@ -1,4 +1,5 @@
-﻿using Day1.View;
+﻿using Day1.Model;
+using Day1.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,13 @@ namespace Day1
     {
         public App()
         {
+            //Ezt a direkt hivatkozást lecseréljük egy DI indirekcióra
+            //var repo = new MyListTestRepository();
             // The root page of your application
-            MainPage = new NavigationPage(new TabbedTaskPage());
+
+            //A DI szerviz segítségével példányosítunk egy példányt ezzel a felülettel.
+            var repo = DependencyService.Get<IMyListRepository>();
+            MainPage = new NavigationPage(new MainPage(repo.GetLists()));
         }
 
         protected override void OnStart()

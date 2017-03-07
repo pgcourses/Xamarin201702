@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Day1.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//felvesszük a xamarin futásidejű DI Containerébe ezt az osztályt
+[assembly: Xamarin.Forms.Dependency(typeof(MyListTestRepository)) ]
 namespace Day1.Model
 {
-    public class MyListRepository
+    public class MyListTestRepository : IMyListRepository
     {
         public IList<MyList> GetLists()
         {
@@ -27,7 +30,7 @@ namespace Day1.Model
                     Cards =new List<Card> {
                     new Card { Title ="2. lista 1. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 1. bejegyzéséhez" },
                     new Card { Title ="2. lista 2. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 2. bejegyzéséhez" },
-                    new Card { Title ="2. lista 3. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 3. bejegyzéséhez" },
+                    new Card { Title ="2. lista 3. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 3. bejegyzéséhez" }
                 } },
             };
         }

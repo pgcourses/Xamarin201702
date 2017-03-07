@@ -37,12 +37,16 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\IMyListRepository.cs" />
     <Compile Include="Model\MyList.cs" />
-    <Compile Include="Model\MyListRepository.cs" />
+    <Compile Include="Model\MyListTestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\TaskViewModel.cs" />
     <Compile Include="View\AbsoluteExample.xaml.cs">
       <DependentUpon>AbsoluteExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TabbedTaskPage.xaml.cs">
       <DependentUpon>TabbedTaskPage.xaml</DependentUpon>
@@ -107,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\AbsoluteExample.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

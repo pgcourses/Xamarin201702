@@ -5,7 +5,38 @@
     <TabbedPage.ItemTemplate>
         <DataTemplate>
             <ContentPage Title="{Binding Title}">
-                
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <ListView ItemsSource="{Binding Cards}"
+                              AbsoluteLayout.LayoutFlags="All"
+                              AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" Font="20" />
+                                        <Label Text="{Binding Description}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid AbsoluteLayout.LayoutFlags="PositionProportional" 
+                          AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+                          IsVisible="{Binding IsLastPage}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Entry Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
+                        <Button Text="Mentés" Grid.Row="1" Grid.Column="0"/>
+                        <Button Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                </AbsoluteLayout>
             </ContentPage>
         </DataTemplate>
     </TabbedPage.ItemTemplate>

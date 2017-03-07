@@ -10,5 +10,8 @@ namespace Day1.Model
     {
         public List<Card> Cards { get; set; }
         public string Title { get; set; }
+
+        // innentől Viewmodel
+        public bool IsLastPage { get; set; } = false;
     }
 }

@@ -32,6 +32,12 @@ namespace Day1.Model
                     new Card { Title ="2. lista 2. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 2. bejegyzéséhez" },
                     new Card { Title ="2. lista 3. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 3. bejegyzéséhez" }
                 } },
+
+                //Innentől ViewModel
+                new MyList {
+                    Title ="Új lista rögzítése",
+                    IsLastPage = true
+                },
             };
         }
     }

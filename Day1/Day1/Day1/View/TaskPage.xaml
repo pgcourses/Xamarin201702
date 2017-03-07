@@ -3,35 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Day1.View.TaskPage"
              Title="TaskPage">
-  <ContentPage.Content>
-    <StackLayout>
-      <Label Text="Új feladat" />
-      <Entry x:Name="entryTitle" Placeholder="Új feladat leírása" />
-      <Picker x:Name="pickerPriority" Title="Fontosság">
-        <Picker.Items>
-          <x:String>Ráér</x:String>
-          <x:String>Normál</x:String>
-          <x:String>Sürgős</x:String>
-        </Picker.Items>
-        <Picker.SelectedIndex>1</Picker.SelectedIndex>
-      </Picker>
-      <StackLayout Orientation="Horizontal">
-        <Label Text="Határnap" />
-        <DatePicker x:Name="dueDate" />
-      </StackLayout>
-      <StackLayout Orientation="Horizontal">
-        <Label Text="Határidő" />
-        <TimePicker x:Name="dueTime" />
-      </StackLayout>
-      <StackLayout Orientation="Horizontal">
-        <Label Text="Elintézve" />
-        <Switch x:Name="switchSolved"/>
-      </StackLayout>
-      <StackLayout Orientation="Horizontal">
-        <Button Text="Mégsem" Clicked="btnCancel_Clicked" />
-        <Button Text="Mentés" Clicked="btnSave_Clicked" />
-        <Button Text="Lista" Clicked="btnList_Clicked" />
-      </StackLayout>
-    </StackLayout>
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Új feladat" />
+                <Entry x:Name="entryTitle" Placeholder="Új feladat leírása" />
+                <Picker x:Name="pickerPriority" Title="Fontosság">
+                    <Picker.Items>
+                        <x:String>Ráér</x:String>
+                        <x:String>Normál</x:String>
+                        <x:String>Sürgős</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>1</Picker.SelectedIndex>
+                </Picker>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Határnap" />
+                    <DatePicker x:Name="dueDate" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Határidő" />
+                    <TimePicker x:Name="dueTime" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Elintézve" />
+                    <Switch x:Name="switchSolved"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Mégsem" Clicked="btnCancel_Clicked" />
+                    <Button Text="Mentés" Clicked="btnSave_Clicked" />
+                    <Button Text="Lista" Clicked="btnList_Clicked" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

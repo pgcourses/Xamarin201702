@@ -20,6 +20,8 @@ namespace Day1
             //A DI szerviz segítségével példányosítunk egy példányt ezzel a felülettel.
             var repo = DependencyService.Get<IMyListRepository>();
             MainPage = new NavigationPage(new MainPage(repo.GetLists()));
+
+            //MainPage = new NavigationPage(new TabbedTaskPage());
         }
 
         protected override void OnStart()

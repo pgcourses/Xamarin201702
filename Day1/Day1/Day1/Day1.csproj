@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Converter\NegateBoolConverter.cs" />
+    <Compile Include="Model\BaseViewModel.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\IMyListRepository.cs" />
     <Compile Include="Model\MyList.cs" />

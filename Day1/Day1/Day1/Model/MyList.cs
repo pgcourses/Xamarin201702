@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Day1.Model
 {
-    public class MyList : INotifyPropertyChanged
+    public class MyList : BaseViewModel
     {
         public MyList()
         {
@@ -29,25 +29,11 @@ namespace Day1.Model
             }
             set
             {
-                if (value == newListName) { return; }
-                newListName = value;
-                OnPropertyChanged(nameof(NewListName));
+                //A BaseViewModel-ben lévő CallerMemberName miatt
+                //egy ilyen sorral helyettesít majd a FORDÍTÓ
+                //SetProperty(value, ref newListName, nameof(NewListName));
+                SetProperty(value, ref newListName);
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            //régi módszer
-            //var handler = PropertyChanged;
-            //if (handler!=null)
-            //{
-            //    handler(this, new PropertyChangedEventArgs(propertyName));
-            //    //Ez ugyanaz:
-            //    //handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //}
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
     }
 }

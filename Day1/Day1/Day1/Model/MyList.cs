@@ -20,6 +20,8 @@ namespace Day1.Model
         // innentől Viewmodel
         public bool IsLastPage { get; set; } = false;
 
+        
+
         private string newListName;
         public string NewListName
         {

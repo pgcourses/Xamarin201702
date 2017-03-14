@@ -6,6 +6,21 @@
     <TabbedPage.Resources>
         <ResourceDictionary>
             <c:NegateBoolConverter x:Key="negateBoolConverter" />
+            <Color x:Key="backgroundColor">#212121</Color>
+            <Color x:Key="textColor">#FF9800</Color>
+
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource textColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource backgroundColor}" />
+            </Style>
+
+            <Style x:Key="labelStyle" TargetType="Label">
+                <!--<Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}" />-->
+                <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+            </Style>
+            
+            
+
         </ResourceDictionary>
     </TabbedPage.Resources>
     <TabbedPage.ItemTemplate>
@@ -15,21 +30,26 @@
                     <ListView ItemsSource="{Binding Cards}"
                               AbsoluteLayout.LayoutFlags="All"
                               AbsoluteLayout.LayoutBounds="0,0,1,1"
-                        HasUnevenRows="True">
+                              SeparatorColor="Transparent"
+                              HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout>
-                                        <Label Text="{Binding Title}" Font="20" />
-                                        <Label Text="{Binding Description}" />
+                                        <Label Text="{Binding Title}" Font="20" 
+                                               Style="{DynamicResource labelStyle}"/>
+                                        <Label Text="{Binding Description}" 
+                                               Style="{DynamicResource labelStyle}"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     <Grid AbsoluteLayout.LayoutFlags="PositionProportional" 
+                          BackgroundColor="{DynamicResource textColor}"
                           AbsoluteLayout.LayoutBounds="0,0,-1,-1"
-                          IsVisible="{Binding IsLastPage}">
+                          IsVisible="{Binding IsLastPage}"
+                          Padding="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -40,12 +60,17 @@
                         </Grid.RowDefinitions>
                         <Entry x:Name="entryNewListName" Text="{Binding NewListName, Mode=TwoWay}" 
                                Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
-                        <Button x:Name="btnSave" Clicked="btnSave_Clicked"  Text="Mentés" Grid.Row="1" Grid.Column="0"/>
-                        <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
+                        <Button x:Name="btnSave" Clicked="btnSave_Clicked"  
+                                Style="{DynamicResource buttonStyle}"
+                                Text="Mentés" Grid.Row="1" Grid.Column="0"/>
+                        <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" 
+                                Style="{DynamicResource buttonStyle}"
+                                Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
                     </Grid>
                     <Button Text="+" 
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                            Style="{DynamicResource buttonStyle}"
                             x:Name="btnAddnewCard"
                             Clicked="btnAddnewCard_Clicked"
                             Margin="20"

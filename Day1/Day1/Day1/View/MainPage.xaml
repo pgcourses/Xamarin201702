@@ -38,13 +38,16 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Entry x:Name="entryNewListName" Text="{Binding NewListName, Mode=TwoWay}" Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
+                        <Entry x:Name="entryNewListName" Text="{Binding NewListName, Mode=TwoWay}" 
+                               Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
                         <Button x:Name="btnSave" Clicked="btnSave_Clicked"  Text="Mentés" Grid.Row="1" Grid.Column="0"/>
                         <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
                     </Grid>
                     <Button Text="+" 
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                            x:Name="btnAddnewCard"
+                            Clicked="btnAddnewCard_Clicked"
                             Margin="20"
                             IsVisible="{Binding IsLastPage, Converter={StaticResource negateBoolConverter}}"
                             />

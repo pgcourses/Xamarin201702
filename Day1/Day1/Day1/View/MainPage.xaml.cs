@@ -46,16 +46,28 @@ namespace Day1.View
                 //throw new ArgumentException(nameof(model));
                 return;
             }
-            
+            //Az aktuális lap adatforrása:
+            //var list = SelectedItem as MyList;
+            //if (list == null)
+            //{
+            //    return;
+            //}
+
             //Megkeressük az oldalunknak megfelelő viewmodel elemet
             var pageIndex = Children.IndexOf(CurrentPage);
 
             //töröljük a beviteli mezőt
 
-            //felvisszük az új listaelemet
-            model.Insert(pageIndex, new MyList { Title = model[pageIndex].NewListName });
-            model[pageIndex+1].NewListName = string.Empty;
-            InvalidateMeasure();
+            //felvisszük az új listaelemet a végére
+            model.Add(new MyList { Title = model[pageIndex].NewListName });
+
+            //majd megcseréljük az utolsó két elemet
+            var tmp = model[pageIndex + 1];
+            model[pageIndex + 1] = model[pageIndex];
+            model[pageIndex] = tmp;
+
+            //A beviteli mezőt kiürítjük
+            model[pageIndex + 1].NewListName = string.Empty;
 
             //ráállunk az újonnan felvitt listaelemre
             CurrentPage = Children[pageIndex];
@@ -78,6 +90,11 @@ namespace Day1.View
             {
                 CurrentPage = Children[pageIndex - 1];
             }
+        }
+
+        private void btnAddnewCard_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -15,6 +15,13 @@ using Xamarin.Forms.Xaml;
 ///                      ------> DataTemplate -> Binding
 ///                      ------> DataTemplate -> Binding
 /// 
+/// 
+/// Binding:
+///        BindingContext
+///        BindingSource
+///        BindingTarget
+///        BindingExpression
+/// 
 /// </summary>
 
 
@@ -71,8 +78,6 @@ namespace Day1.View
 
             //ráállunk az újonnan felvitt listaelemre
             CurrentPage = Children[pageIndex];
-
-
 
         }
 

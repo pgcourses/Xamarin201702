@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Day1.Model
 {
@@ -36,6 +37,13 @@ namespace Day1.Model
                 //SetProperty(value, ref newListName, nameof(NewListName));
                 SetProperty(value, ref newListName);
             }
+        }
+
+        private ImageSource picture;
+        public ImageSource Picture
+        {
+            get { return picture; }
+            set { SetProperty(value, ref picture); }
         }
     }
 }

@@ -18,8 +18,6 @@
                 <!--<Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}" />-->
                 <Setter Property="TextColor" Value="{DynamicResource textColor}" />
             </Style>
-            
-            
 
         </ResourceDictionary>
     </TabbedPage.Resources>
@@ -27,24 +25,39 @@
         <DataTemplate>
             <ContentPage Title="{Binding Title}">
                 <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                    <ListView ItemsSource="{Binding Cards}"
-                              AbsoluteLayout.LayoutFlags="All"
-                              AbsoluteLayout.LayoutBounds="0,0,1,1"
-                              SeparatorColor="Transparent"
-                              HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout>
-                                        <Label Text="{Binding Title}" Font="20" 
+                    <Grid AbsoluteLayout.LayoutFlags="All"
+                          AbsoluteLayout.LayoutBounds="0,0,1,1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="0">
+                            <Button Text="Kép" x:Name="btnGetPicture" Clicked="btnGetPicture_Clicked"/>
+                            <Image Source="{Binding Picture}" />
+                        </StackLayout>
+                            <ListView ItemsSource="{Binding Cards}"
+                                      Grid.Row="1"
+                                      SeparatorColor="Transparent"
+                                      HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" Font="20" 
                                                Style="{DynamicResource labelStyle}"/>
-                                        <Label Text="{Binding Description}" 
+                                            <Label Text="{Binding Description}" 
                                                Style="{DynamicResource labelStyle}"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+
                     <Grid AbsoluteLayout.LayoutFlags="PositionProportional" 
                           BackgroundColor="{DynamicResource textColor}"
                           AbsoluteLayout.LayoutBounds="0,0,-1,-1"

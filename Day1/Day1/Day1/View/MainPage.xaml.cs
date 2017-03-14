@@ -1,4 +1,5 @@
 ﻿using Day1.Model;
+using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,6 +101,44 @@ namespace Day1.View
         private void btnAddnewCard_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        private async void btnGetPicture_Clicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(
+                new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    Directory = "Sample",
+                    Name = "test.jpg"
+                });
+
+            if (file == null)
+                return;
+
+            await DisplayAlert("File Location", file.Path, "OK");
+
+            var mylist = SelectedItem as MyList;
+
+            if (mylist==null)
+            {
+                //todo: ez biztosan hiba, throw!
+                return;
+            }
+
+            mylist.Picture = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
         }
     }
 }

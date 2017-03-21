@@ -2,6 +2,7 @@
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,12 +134,20 @@ namespace Day1.View
                 return;
             }
 
-            mylist.Picture = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
+            //mylist.Picture = ImageSource.FromStream(() =>
+            //{
+            //    var stream = file.GetStream();
+            //    stream.Position = 0;
+            //    var memstream = new MemoryStream();
+            //    stream.CopyTo(memstream);
+            //    memstream.Position = 0; //enélkül nem mutatja meg a képet
+            //    file.Dispose();
+            //    //return stream;
+            //    return memstream;
+            //});
+
+            mylist.Picture = ImageSource.FromFile(file.Path);
+
         }
     }
 }

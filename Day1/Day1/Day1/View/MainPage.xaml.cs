@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +36,8 @@ namespace Day1.View
         public MainPage()
         {
             InitializeComponent();
+            var asmn = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
+            Title = asmn.Version.ToString();
         }
 
         public MainPage(IList<MyList> model)

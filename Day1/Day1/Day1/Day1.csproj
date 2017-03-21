@@ -43,6 +43,7 @@
     <Compile Include="Model\MyList.cs" />
     <Compile Include="Model\MyListTestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IPhoneWrapper.cs" />
     <Compile Include="ViewModel\TaskViewModel.cs" />
     <Compile Include="View\AbsoluteExample.xaml.cs">
       <DependentUpon>AbsoluteExample.xaml</DependentUpon>

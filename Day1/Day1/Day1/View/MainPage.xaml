@@ -49,8 +49,16 @@
                                         <StackLayout>
                                             <Label Text="{Binding Title}" Font="20" 
                                                Style="{DynamicResource labelStyle}"/>
-                                            <Label Text="{Binding Description}" 
-                                               Style="{DynamicResource labelStyle}"/>
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Description}" 
+                                                       Style="{DynamicResource labelStyle}"/>
+                                                <Button x:Name="btnPhoneCall" 
+                                                        Text="Hívás" 
+                                                        IsVisible="{Binding IsPhoneCallCard}"
+                                                        Command="{Binding PhoneCallCommand}"
+                                                         />
+                                            </StackLayout>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>

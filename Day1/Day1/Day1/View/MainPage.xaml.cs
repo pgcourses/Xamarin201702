@@ -152,5 +152,10 @@ namespace Day1.View
             mylist.Picture = ImageSource.FromFile(file.Path);
 
         }
+
+        //private void btnPhoneCall_Clicked(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

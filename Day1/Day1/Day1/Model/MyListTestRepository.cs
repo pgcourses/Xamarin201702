@@ -31,7 +31,8 @@ namespace Day1.Model
                     Cards =new List<Card> {
                     new Card { Title ="2. lista 1. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 1. bejegyzéséhez" },
                     new Card { Title ="2. lista 2. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 2. bejegyzéséhez" },
-                    new Card { Title ="2. lista 3. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 3. bejegyzéséhez" }
+                    new Card { Title ="2. lista 3. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 3. bejegyzéséhez" },
+                    new Card { Title ="Felhívni Jánost", Description = "06 1 1234567", IsPhoneCallCard=true }
                 } },
 
                 //Innentől ViewModel

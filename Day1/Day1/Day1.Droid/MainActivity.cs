@@ -23,6 +23,7 @@ namespace Day1.Droid
 
             base.OnCreate(bundle);
             CrashManager.Register(this, "02c9889c64e946deb3032cb8101ecb1d");
+            CheckForUpdates();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
@@ -32,6 +33,29 @@ namespace Day1.Droid
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        void CheckForUpdates()
+        {
+            UpdateManager.Register(this, "02c9889c64e946deb3032cb8101ecb1d");
+        }
+
+        void UnregisterUpdateManager()
+        {
+            UpdateManager.Unregister();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            UnregisterUpdateManager();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            UnregisterUpdateManager();
+        }
+
     }
 }
 

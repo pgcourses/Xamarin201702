@@ -21,8 +21,6 @@ namespace Day1.Model
         // innentől Viewmodel
         public bool IsLastPage { get; set; } = false;
 
-        
-
         private string newListName;
         public string NewListName
         {
@@ -45,5 +43,30 @@ namespace Day1.Model
             get { return picture; }
             set { SetProperty(value, ref picture); }
         }
+
+        private bool isHorizontal;
+        public bool IsHorizontal
+        {
+            get { return isHorizontal; }
+            set { SetProperty(value, ref isHorizontal); }
+        }
+
+
+        //Ha akarjuk, akkor az IsHorizontal setteréből átállíthatjuk ezeket a propertyket
+        private int gridRow;
+        public int GridRow
+        {
+            get { return gridRow; }
+            set { SetProperty(value, ref gridRow); }
+        }
+
+        private int gridColumn;
+        public int GridColumnt
+        {
+            get { return gridColumn; }
+            set { SetProperty(value, ref gridColumn); }
+        }
+
+
     }
 }

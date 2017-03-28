@@ -19,6 +19,9 @@ namespace Day1.Model
                     new MainMenuItem { Title="Névjegy", PageType=typeof(About) },
                     new MainMenuItem { Title="Tennivalók", PageType=typeof(TodoList) },
                     new MainMenuItem { Title="Telefonkönyv", PageType=typeof(ContactList) }
+                    //new MainMenuItem { Title="Névjegy", GetPage=()=> { return new About(); } },
+                    //new MainMenuItem { Title="Tennivalók", GetPage=()=> { return new TodoList(); } },
+                    //new MainMenuItem { Title="Telefonkönyv", GetPage=()=> { return new ContactList(); } }
             });
         }
     }

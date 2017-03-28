@@ -9,6 +9,7 @@
         <ContentPage Title="Főmenü">
             <ScrollView>
                 <ListView x:Name="mainMenuListView" 
+                          SeparatorVisibility="None"
                           ItemSelected="mainMenuListView_ItemSelected"
                           ItemsSource="{Binding MainMenuItems}" >
                     <ListView.ItemTemplate>

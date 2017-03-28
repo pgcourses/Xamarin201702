@@ -3,5 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Day1.View.Pages.About"
              Title="Névjegy">
-    <Label Text="Ez a NetAcademia Xamarin (201702) tanfolyamának példaprogramja"  />
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Ez a NetAcademia Xamarin (201702) tanfolyamának példaprogramja" Margin="20" />
+            <Label x:Name="labelVersion" Text="" Margin="20" />
+        </StackLayout>
+
+    </ScrollView>
 </ContentPage>

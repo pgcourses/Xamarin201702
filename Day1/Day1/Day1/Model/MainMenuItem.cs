@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace Day1.Model
 {
@@ -6,6 +7,6 @@ namespace Day1.Model
     {
         public string Title { get; set; }
         public Type PageType { get; set; }
-        public Func<Type> GetPage { get; set; }
+        //public Func<Page> GetPage { get; set; }
     }
 }

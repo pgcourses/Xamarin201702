@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="Day1.View.MainMenu.MainMenu" 
+                  >
+    <MasterDetailPage.Master>
+        
+        <!--Itt definiáljuk, nem tesszük ki külön xaml-be-->
+        <ContentPage Title="Főmenü">
+            <ScrollView>
+                <ListView x:Name="mainMenuListView" 
+                          ItemSelected="mainMenuListView_ItemSelected"
+                          ItemsSource="{Binding MainMenuItems}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Title}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -40,6 +40,8 @@
     <Compile Include="Model\BaseViewModel.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\IMyListRepository.cs" />
+    <Compile Include="Model\MainMenuItem.cs" />
+    <Compile Include="Model\MainMenuModel.cs" />
     <Compile Include="Model\MyList.cs" />
     <Compile Include="Model\MyListTestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,8 +50,20 @@
     <Compile Include="View\AbsoluteExample.xaml.cs">
       <DependentUpon>AbsoluteExample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
+    <Compile Include="View\MainMenu\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ContactList.xaml.cs">
+      <DependentUpon>ContactList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TodoList.xaml.cs">
+      <DependentUpon>TodoList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TabbedTaskPage.xaml.cs">
       <DependentUpon>TabbedTaskPage.xaml</DependentUpon>
@@ -127,7 +141,31 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\MainPage.xaml">
+    <EmbeddedResource Include="View\Pages\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Pages\About.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\MainMenu\MainMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Pages\ContactList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Pages\TodoList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

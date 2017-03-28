@@ -1,5 +1,6 @@
 ﻿using Day1.Model;
 using Day1.View;
+using Day1.View.MainMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,14 @@ namespace Day1
             // The root page of your application
 
             //A DI szerviz segítségével példányosítunk egy példányt ezzel a felülettel.
-            var repo = DependencyService.Get<IMyListRepository>();
-            MainPage = new NavigationPage(new MainPage(repo.GetLists()));
+            //var repo = DependencyService.Get<IMyListRepository>();
+            //MainPage = new NavigationPage(new MainPage(repo.GetLists()));
 
-            //MainPage = new NavigationPage(new TabbedTaskPage());
+            //A Master/Detail oldalt nem navigációs oldalként kell betölteni
+            //MainPage = new NavigationPage(new MainMenu());
+
+            MainPage = new MainMenu();
+
         }
 
         protected override void OnStart()

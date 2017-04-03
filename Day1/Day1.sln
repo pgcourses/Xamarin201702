@@ -15,6 +15,64 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1.UWP", "Day1\Day1.UWP\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1.Windows", "Day1\Day1.Windows\Day1.Windows.csproj", "{BF82FD27-F503-4AF8-8699-0CB1BE0D3E77}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{EC38BCA6-A393-48BA-892F-5837729EADF8}"
+	ProjectSection(SolutionItems) = preProject
+		..\Android.md = ..\Android.md
+		..\iOS.md = ..\iOS.md
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F41C315B-22FF-465E-B895-133DEE6CF8E7}"
+	ProjectSection(SolutionItems) = preProject
+		..\images\android01.png = ..\images\android01.png
+		..\images\android02.png = ..\images\android02.png
+		..\images\android03.png = ..\images\android03.png
+		..\images\android04.png = ..\images\android04.png
+		..\images\android05.png = ..\images\android05.png
+		..\images\android06.png = ..\images\android06.png
+		..\images\android07.png = ..\images\android07.png
+		..\images\android08.png = ..\images\android08.png
+		..\images\android09.png = ..\images\android09.png
+		..\images\android10.png = ..\images\android10.png
+		..\images\android11.png = ..\images\android11.png
+		..\images\android12.png = ..\images\android12.png
+		..\images\android13.png = ..\images\android13.png
+		..\images\iOS01.png = ..\images\iOS01.png
+		..\images\iOS02.png = ..\images\iOS02.png
+		..\images\iOS03.png = ..\images\iOS03.png
+		..\images\iOS04.png = ..\images\iOS04.png
+		..\images\iOS05.png = ..\images\iOS05.png
+		..\images\iOS06.png = ..\images\iOS06.png
+		..\images\iOS07.png = ..\images\iOS07.png
+		..\images\iOS08.png = ..\images\iOS08.png
+		..\images\iOS09.png = ..\images\iOS09.png
+		..\images\iOS10.png = ..\images\iOS10.png
+		..\images\iOS11.png = ..\images\iOS11.png
+		..\images\iOS12.png = ..\images\iOS12.png
+		..\images\iOS13.png = ..\images\iOS13.png
+		..\images\iOS14.png = ..\images\iOS14.png
+		..\images\iOS15.png = ..\images\iOS15.png
+		..\images\iOS16.png = ..\images\iOS16.png
+		..\images\iOS17.png = ..\images\iOS17.png
+		..\images\iOS18.png = ..\images\iOS18.png
+		..\images\iOS19.png = ..\images\iOS19.png
+		..\images\iOS20.png = ..\images\iOS20.png
+		..\images\iOS21.png = ..\images\iOS21.png
+		..\images\iOS22.png = ..\images\iOS22.png
+		..\images\iOS23.png = ..\images\iOS23.png
+		..\images\iOS24.png = ..\images\iOS24.png
+		..\images\iOS25.png = ..\images\iOS25.png
+		..\images\iOS26.png = ..\images\iOS26.png
+		..\images\iOS27.png = ..\images\iOS27.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOp", "DevOp", "{3E372B92-2BF4-44E2-8CD0-8821B376447B}"
+	ProjectSection(SolutionItems) = preProject
+		..\AndroidContinuousIntegration.md = ..\AndroidContinuousIntegration.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Android.KeyStore", "Android.KeyStore", "{3065B203-B310-480E-A256-0C33449B9F22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -404,5 +462,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F41C315B-22FF-465E-B895-133DEE6CF8E7} = {EC38BCA6-A393-48BA-892F-5837729EADF8}
+		{3E372B92-2BF4-44E2-8CD0-8821B376447B} = {EC38BCA6-A393-48BA-892F-5837729EADF8}
+		{3065B203-B310-480E-A256-0C33449B9F22} = {EC38BCA6-A393-48BA-892F-5837729EADF8}
 	EndGlobalSection
 EndGlobal

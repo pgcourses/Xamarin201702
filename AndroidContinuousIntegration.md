@@ -107,7 +107,7 @@ Majd a szinkronizálás linkre:
 
 ![](images/visualstudio12.png?raw=true)
 
-**Figyelem:** Ha nem ezen a gépen fejlesztünk kizárólagosan, akkor ez előtt a lépés előtt le kell tölteni Pull paranccsal a GitHub kódtárból az utolsó változatot.
+**Figyelem:** Ha nem ezen a gépen fejlesztünk kizárólagosan, akkor ez előtt a lépés előtt le kell tölteni Pull paranccsal a GitHub kódtárból az utolsó változatot, és ha szükséges elvégezni az összefésülést (Merge).
 
 A megjelenő ablakban nyissuk le a **Push** gomb lenyílóját, 
 
@@ -121,7 +121,7 @@ majd nyomjuk meg a **Push** gombot:
 
 ![](images/visualstudio15.png?raw=true)
 
-Mivel szükséges hozzá, elképzelhető, hogy a Visual Studio megkér, hogy a Microsoft-os bejelentkezésünket erősítsük meg névvel és jeszóval. Ezt követően a kódunk a megfelelő *.visualstudio.com projekt kódtárába feltöltődik.
+Mivel szükséges hozzá, elképzelhető, hogy a Visual Studio megkér, hogy a Microsoft-os bejelentkezésünket erősítsük meg névvel és jelszóval. Ezt követően a kódunk a megfelelő *.visualstudio.com projekt kódtárába feltöltődik.
 
 ![](images/visualstudio16.png?raw=true)
 
@@ -213,15 +213,18 @@ A beállításuk pedig a következő:
   ![](images/visualstudio46.png?raw=true)
   - majd az **Android Manifest** lapon beállítani a két értéket
   ![](images/visualstudio47.png?raw=true)
-  - be kell állítani a Build verziószámát a Build definíció **Options** fülén a Build number format mezőben **0.0.1.$(BuildID)**, hogy legyen egy verziószámunk hasonlóan a [SemVer](http://semver.org/) szerint, ez 0.0.1 és a negyedik szám pedig a build sorszáma, amit ezen a visualstudio.com account-on valah összesen indítottunk. Így ez a szám egyedi lesz minden Build során, az első három sorszámot pedig a [SemVer](http://semver.org/) szerint kézzel állíthatjuk be.
+  - be kell állítani a Build verziószámát a Build definíció **Options** fülén a Build number format mezőben **0.0.1.$(BuildID)**, hogy legyen egy verziószámunk hasonlóan a [SemVer](http://semver.org/) szerint, ez 0.0.1 és a negyedik szám pedig a build sorszáma, amit ezen a visualstudio.com account-on valaha összesen indítottunk. Így ez a szám egyedi lesz minden Build során, az első három sorszámot pedig a [SemVer](http://semver.org/) szerint kézzel állíthatjuk be. 
+  
+  **Figyelem!** A verzószám első három részének átállításakor szinkronban kell módosítanunk az **AndroidManifest.xml** állomány **android.versionName** mezőjének és a **Build definíció Options/Build number format** mezőnek az értékét!
+  
   ![](images/visualstudio42.png?raw=true)
-  - be kell állítani az AndroidManifest.xml android:versionCode mezőt, ehhez a android:versionCode="0" értéket kell átírni úgy, hogy a Build verzóból levágjuk az utolsó számot és beírjuk az android:versionCode="0" mezőbe a 0 helyére így
+  - A Build során *át kell írnunk* a **AndroidManifest.xml** állomány **android:versionCode** mezőjének értékét az aktuális Build számára, ehhez a android:versionCode="0" értéket kell átírni úgy, hogy a Build verzóból levágjuk az utolsó számot és beírjuk az android:versionCode="0" mezőbe a 0 helyére így
   ![](images/visualstudio45.png?raw=true)
-  - be kell állítani az AndroidManifest.xml android:versionName mezőt, ehhez csak az AndroidManifest.xml állományt kell kiválasztani, a többi beállítást már hagyhatjuk alapértelmezett beállításokkal, így:
+  - A Build során *át kell írnunk* az **AndroidManifest.xml** állomány **android:versionName** mezőjének értékét az aktuális verziószámra, ehhez csak az AndroidManifest.xml állományt kell kiválasztani, a többi beállítást már hagyhatjuk alapértelmezett beállításokkal, így:
   ![](images/visualstudio43.png?raw=true)
-  - végül, hogy a dll-ben lekérdezhető legyen a build verziószáma, és a felhasználónak meg tudjuk mutatni, az AssemblyInfo állomány beállítása kell, ehhez elég megadnunk a Portable projektünk megfelelő mappáját, így:
+  - végül, hogy a dll-ben lekérdezhető legyen a build verziószáma, és a felhasználónak meg tudjuk mutatni, A Build során *át kell írnunk* az **AssemblyInfo.cs** állomány verziószámait, ehhez elég megadnunk a Portable projektünk megfelelő mappáját, így:
   ![](images/visualstudio44.png?raw=true)
-  Ahhoz pedig, hogy ezt a verziószámot az alkalmazásból elérjük, [a következő lekérdezés segíthet](https://github.com/Xamarin201702/Xamarin201702/blob/master/Day1/Day1/Day1/View/Pages/About.xaml.cs#L19):
+  Ahhoz pedig, hogy ezt a verziószámot (Az utoljára beállítottat, ami az AssemblyVersion.cs-be kerrült, ez lesz a fordított .dll verziószáma) az alkalmazásból elérjük, [a következő lekérdezés segíthet](https://github.com/Xamarin201702/Xamarin201702/blob/master/Day1/Day1/Day1/View/Pages/About.xaml.cs#L19):
 ```
     var asmn = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
     labelVersion.Text = asmn.Version.ToString();
@@ -233,7 +236,7 @@ A beállításuk pedig a következő:
   ![](images/visualstudio37.png?raw=true)
   - A kapott ablakba fel kell vinni a a HockeyApp szerviz API Tokenjét, a megnevezés tetszőleges, csak a VisualStudio.com build-ben hivatkozunk majd ezzel a névvel.
   ![](images/visualstudio39.png?raw=true)
-  - Miután ezzel megvagyunk, visszamegyünk a Build definícióra, és a **HockeyApp connection** mező mellett a frissítés ikonra kattintunk:
+  - Miután ezzel megvagyunk, visszamegyünk a Build definícióra, és a **HockeyApp connection** mező mellett a frissítés ikonra kattintunk, utána ki tudjuk választani a most rögzített HockeyApp kapcsolatot:
   ![](images/visualstudio40.png?raw=true)
   - be kell még állítanunk az App ID-t, célszerűen ezt is változóként titkosítva, itt az App ID mezőben pedig $(változónév) segítségével a titkos értéket betöltve.
   - meg kell adnunk a Binary File Path mezőben a következőt: **$(build.binariesdirectory)/$(BuildConfiguration)/*.apk**

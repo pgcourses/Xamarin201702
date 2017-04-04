@@ -5,6 +5,9 @@ Kódtár kiegészítés a NetAcademia Xamarin tanfolyamához: http://www.netacad
 
 Az [Android](https://github.com/Xamarin201702/Xamarin201702/blob/master/Android.md) és az [iOS](https://github.com/Xamarin201702/Xamarin201702/blob/master/iOS.md) alkalmazásainkat ezek szerint a leírások szerint kell előkészíteni és feltölteni a HockeyApp-ra.
 
+## Automatikus telepítés bétatesztre
+Az [Android](https://github.com/Xamarin201702/Xamarin201702/blob/master/AndroidContinuousIntegration.md) projekt telepítéséről készült dokumentáció a linken elérhető.
+
 ## Összefoglalás
 Ezen a tanfolyamon Windows platformon, C# nyelven Visual Studio 2015 Community és Xamarin.Forms segítségével olyan alkalmazásokat fogunk írni, amelyeket az adott platformra fordítva natív alkalmazásokat kapunk Windows, Android és iOS környezetben. A tanfolyam elsősorban C#/.NET fejlesztőknek hasznos, hiszen így a C# nyelv segítségével kiszabadulunk a Windows környezetből különböző mobil platformokra.
 
@@ -82,4 +85,4 @@ A [HockeyApp](http://hockeyapp.net/) egy alkalmazás disztribúciós szolgáltat
 Ahhoz, hogy a telefonra telepített alkalmazásunk a hibaüzeneteket (crash) felküldje, a következő lépéseket kell elvégezni. [Részletek itt](https://components.xamarin.com/gettingstarted/hockeyappandroid)
 
 ### Megjegyzés
-Ha valakinek nincs Androidos vagy iOS-es eszköze, attól még fogja tudni követni a tanfolyamot, és mivel felvétel készül később, ha mégis ilyen feladat kerül elő, felvételről át fogja tudni ismételni.
+Ha valakinek nincs Androidos vagy iOS-es eszköze, attól még fogja tudni követni a tanfolyamot, és mivel felvétel készül, később, ha mégis ilyen feladat kerül elő, felvételről át fogja tudni ismételni.

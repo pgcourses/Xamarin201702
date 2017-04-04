@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Day1.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,10 +7,19 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Day1.Model
+namespace Day1.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
+        private ValidationManager validationManager;
+
+        public ViewModelBase()
+        {
+            this.validationManager = new ValidationManager(this);
+        }
+
+        public ValidationManager ValidationManager { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -35,6 +45,10 @@ namespace Day1.Model
                 return;
             }
             backingField = value;
+            //Mivel ez a változási pont minden esetben, 
+            //itt kéne a validációnak lefutnia
+            validationManager.ValidateProperty(propertyName);
+
             OnPropertyChanged(propertyName);
         }
     }

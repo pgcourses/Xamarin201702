@@ -1,0 +1,32 @@
+﻿Az adatok validálásához a következők szükségesek:
+
+1. Szeretnénk megtartani a System.ComponentModel.DataAnnotations névtér 
+   ValidationAttribute megoldását, vagyis, maga a validálást ez fogja végezni.
+
+2. A validálás eredményét szeretnénk megjeleníteni a beviteli űrlapon. Mivel erre 
+   most a Xamarin nem ad beépített választ, saját infrastruktúra kell.
+
+3. A validálás eredménye a következő legyen: egy szöveges információ, ami a hibaüzeneteket
+   tartalmazza. Tehát ez egy ICollection<string>.
+
+4. A validálás eredménye adatkötésben felhasználható (bind-olható) legyen
+
+5. Erre kell nekünk valamilyen infrastruktúra.
+
+6. Ez akkor egy ICollection<string> és a neve legye Errors.
+
+7. Ez az Errors gyűjtemény Bindolható legyen és automatikusan működjön.
+
+8. Hol legyen ez a gyűjtemény? Ha egy property-re tesszük, akkor minden szóbajöhető típuson meg kell jelennie. 
+   Ráadásul, ha olyan hiba van, ami nem egy propertyhez tartozik (pl többhöz, mindegyikhez, egyikhez sem) akkor nem tudjuk elérni
+
+9. Ha nem propertyre tesszük, akkor a property-t tartalmazó objektumra célszerű. Méghozzá úgy, hogy ebből lekérdezhető legyen az adott
+   property gyűjteménye.
+
+10. A következő lépés, hogy a felületen, ha módosítunk egy értéket, akkor ennek a változásába nekünk valahol be kell csatlakozni,
+    és elvégezni a validációt. 
+	
+11. Ezt a módosítást a Binding mechanizmus végzi, így nekünk a Binding során kell a feladatunkat elvégezni.
+
+
+

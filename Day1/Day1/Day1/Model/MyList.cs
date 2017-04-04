@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Day1.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Day1.Model
 {
-    public class MyList : BaseViewModel
+    public class MyList : ViewModelBase
     {
         public MyList()
         {

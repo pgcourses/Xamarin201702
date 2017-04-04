@@ -40,7 +40,8 @@
     <Compile Include="Converter\IsHorizontalToGridRowConverter.cs" />
     <Compile Include="Converter\IsHorizontalToStackLayoutOrientation.cs" />
     <Compile Include="Converter\NegateBoolConverter.cs" />
-    <Compile Include="Model\BaseViewModel.cs" />
+    <Compile Include="Validation\ValidationManager.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\IMyListRepository.cs" />
     <Compile Include="Model\MainMenuItem.cs" />
@@ -166,6 +167,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Validation\info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

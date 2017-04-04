@@ -10,6 +10,7 @@
             <c:IsHorizontalToGridColumnConverter x:Key="isHorizontalToGridColumnConverter" />
             <c:IsHorizontalToGridRowConverter x:Key="isHorizontalToGridRowConverter" />
             <c:IsHorizontalToStackLayoutOrientation x:Key="isHorizontalToStackLayoutOrientation" />
+            <c:StringListToStringConverter x:Key="stringListToStringConverter" />
             
             <Color x:Key="backgroundColor">#212121</Color>
             <Color x:Key="textColor">#FF9800</Color>
@@ -73,9 +74,9 @@
                         </ListView>
                     </Grid>
 
-                    <Grid AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    <Grid AbsoluteLayout.LayoutFlags="WidthProportional" 
                           BackgroundColor="{DynamicResource textColor}"
-                          AbsoluteLayout.LayoutBounds="0,0,-1,-1"
+                          AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
                           IsVisible="{Binding IsLastPage}"
                           Padding="10">
                         <Grid.ColumnDefinitions>
@@ -85,16 +86,21 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Entry x:Name="entryNewListName" Text="{Binding NewListName, Mode=TwoWay}" 
-                               Placeholder="Kérem az új lista nevét" Grid.ColumnSpan="2" />
-                        <Label Text="" FontSize="Small" TextColor="Red" />
+                        <Entry x:Name="entryNewListName" 
+                                   Text="{Binding NewList.NewListName, Mode=TwoWay}" 
+                                   Grid.ColumnSpan="2"
+                                   Placeholder="Kérem az új lista nevét"  />
+                        <Label Text="{Binding NewList.Errors[NewListName], Converter={StaticResource stringListToStringConverter}}" 
+                                   Grid.Row="1" Grid.ColumnSpan="2"
+                                   FontSize="Small" TextColor="White" />
                         <Button x:Name="btnSave" Clicked="btnSave_Clicked"  
                                 Style="{DynamicResource buttonStyle}"
-                                Text="Mentés" Grid.Row="1" Grid.Column="0"/>
+                                Text="Mentés" Grid.Row="2" Grid.Column="0"/>
                         <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" 
                                 Style="{DynamicResource buttonStyle}"
-                                Text="Mégsem" Grid.Row="1" Grid.Column="1"/>
+                                Text="Mégsem" Grid.Row="2" Grid.Column="1"/>
                     </Grid>
                     <Button Text="+" 
                             AbsoluteLayout.LayoutFlags="PositionProportional"

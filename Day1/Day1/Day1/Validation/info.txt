@@ -28,5 +28,14 @@
 	
 11. Ezt a módosítást a Binding mechanizmus végzi, így nekünk a Binding során kell a feladatunkat elvégezni.
 
+12. Elkészült a vázlat, két feladat visszamaradt: 
+	a.) kezdetben nem validálunk, 
+	b.) a gomb amivel mentünk megnyomható akkor is, ha van validációs hibánk.
+	Az első két lépést összevonni, és Command-dal megvalósítani
+
+	c.) jó lenne ha piros szegélye lenne az invalid beviteli mezőknek
+	d.) A megtekintéshez nem kell validáció, ezért refaktor: 
+	     két lépcső: ViewModelBase és ValidableViewModelBase
+
 
 

@@ -127,6 +127,14 @@ namespace Day1.View
                 //throw new ArgumentException(nameof(model));
                 return;
             }
+
+            var mylist = SelectedItem as MyList;
+            if (!mylist.NewList.IsValid())
+            {
+                //akkor üzenni, hogy nem lehet elmenteni
+
+            }
+
             //Az aktuális lap adatforrása:
             //var list = SelectedItem as MyList;
             //if (list == null)
@@ -140,7 +148,7 @@ namespace Day1.View
             //töröljük a beviteli mezőt
 
             //felvisszük az új listaelemet a végére
-            model.Add(new MyList { Title = model[pageIndex].NewListName });
+            model.Add(new MyList { Title = model[pageIndex].NewList.NewListName });
 
             //majd megcseréljük az utolsó két elemet
             var tmp = model[pageIndex + 1];
@@ -148,7 +156,7 @@ namespace Day1.View
             model[pageIndex] = tmp;
 
             //A beviteli mezőt kiürítjük
-            model[pageIndex + 1].NewListName = string.Empty;
+            model[pageIndex + 1].NewList.NewListName = string.Empty;
 
             //ráállunk az újonnan felvitt listaelemre
             CurrentPage = Children[pageIndex];
@@ -164,7 +172,7 @@ namespace Day1.View
                 return;
             }
             var pageIndex = Children.IndexOf(CurrentPage);
-            model[pageIndex].NewListName = string.Empty;
+            model[pageIndex].NewList.NewListName = string.Empty;
             if (pageIndex>0)
             {
                 CurrentPage = Children[pageIndex - 1];

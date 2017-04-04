@@ -22,21 +22,14 @@ namespace Day1.Model
         // innentől Viewmodel
         public bool IsLastPage { get; set; } = false;
 
-        private string newListName;
-        public string NewListName
+        private NewList newList = new NewList();
+        public NewList NewList
         {
-            get
-            {
-                return newListName;
-            }
-            set
-            {
-                //A BaseViewModel-ben lévő CallerMemberName miatt
-                //egy ilyen sorral helyettesít majd a FORDÍTÓ
-                //SetProperty(value, ref newListName, nameof(NewListName));
-                SetProperty(value, ref newListName);
-            }
+            get { return newList; }
+            set { SetProperty(value, ref newList); }
         }
+
+
 
         private ImageSource picture;
         public ImageSource Picture

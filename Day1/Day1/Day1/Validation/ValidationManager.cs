@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Day1.Validation
 {
@@ -25,12 +26,18 @@ namespace Day1.Validation
     ///                     Errormessagexn
     /// </summary>
 
-    public class ValidationManager
+    public class ValidationManager : INotifyPropertyChanged
     {
         private ViewModelBase viewModel;
 
         private IDictionary<string, ReadOnlyCollection<string>> errors
             = new Dictionary<string, ReadOnlyCollection<string>>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public ValidationManager(ViewModelBase viewModel)
         {
@@ -94,15 +101,18 @@ namespace Day1.Validation
                 errorList.AddRange(validationResult.Select(x => x.ErrorMessage));
             }
 
+            var isChanged = false;
             if (errors.ContainsKey(propertyName))
             { //már van ilyen a szótárban-ban (Dictionary-ben)
-                if (errors.Any())
+                if (errorList.Any())
                 { //van hibánk, módosítunk a meglévőn
                     errors[propertyName] = GetROCollection(errorList);
+                    isChanged = true;
                 }
                 else
                 { //megszűntek a hibák, törlünk
                     errors.Remove(propertyName);
+                    isChanged = true;
                 }
             }
             else
@@ -110,14 +120,37 @@ namespace Day1.Validation
                 if (errorList.Any())
                 {
                     errors.Add(propertyName, GetROCollection(errorList));
+                    isChanged = true;
                 }
             }
 
+            if (isChanged)
+            {
+                OnPropertyChanged($"Item[{propertyName}]");
+            }
         }
 
         private static ReadOnlyCollection<string> GetROCollection(List<string> errorList)
         {
             return new ReadOnlyCollection<string>(errorList);
+        }
+
+        //Ez a gombok miatt kell, hogy ne tudjak ellépni az oldalról
+        public bool IsValid()
+        {
+            //A kérdés valamennyi property-re vonatkozik
+            var toValidate = viewModel.GetType()
+                                      .GetRuntimeProperties()
+                                      .Where(
+                                        pi =>
+                                            pi.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.ValidationAttribute))
+                                              .Any());
+            foreach (PropertyInfo pi in toValidate)
+            {
+                ValidateProperty(pi.Name);
+            }
+
+            return errors.Count == 0;
         }
     }
 }

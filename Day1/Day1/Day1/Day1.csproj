@@ -40,6 +40,8 @@
     <Compile Include="Converter\IsHorizontalToGridRowConverter.cs" />
     <Compile Include="Converter\IsHorizontalToStackLayoutOrientation.cs" />
     <Compile Include="Converter\NegateBoolConverter.cs" />
+    <Compile Include="Converter\StringListToStringConverter.cs" />
+    <Compile Include="Model\NewList.cs" />
     <Compile Include="Validation\ValidationManager.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Card.cs" />

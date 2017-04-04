@@ -15,10 +15,21 @@ namespace Day1.ViewModel
 
         public ViewModelBase()
         {
-            this.validationManager = new ValidationManager(this);
+            validationManager = new ValidationManager(this);
         }
 
-        public ValidationManager ValidationManager { get; }
+        public ValidationManager Errors
+        {
+            get
+            {
+                return validationManager;
+            }
+        }
+
+        public bool IsValid()
+        {
+            return validationManager.IsValid();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

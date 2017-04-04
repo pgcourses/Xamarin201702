@@ -140,9 +140,9 @@ namespace Day1.Validation
         {
             //A kérdés valamennyi property-re vonatkozik
             var toValidate = viewModel.GetType()
-                                      .GetRuntimeProperties()
+                                      .GetRuntimeProperties() //Elkérjük az összes property-t
                                       .Where(
-                                        pi =>
+                                        pi => //Ezek közül pedig szűrünk azokra, amelyiknek van ValidationAttribute dekorációja
                                             pi.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.ValidationAttribute))
                                               .Any());
             foreach (PropertyInfo pi in toValidate)

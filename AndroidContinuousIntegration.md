@@ -208,15 +208,24 @@ a következõképpen rendezve õket:
 A három **Version Assemblies** a **Build Xamarin.Android** lépés elé kerül, **HockeyApp** pedig a Build legvégére.
 
 A beállításuk pedig a következõ:
-- A verziózáshoz négy lépés kell
-  - be kell állítani a Build verziószámát a Build definíció **Options** fülén a Build number format mezõben **0.0.1.$(BuildID)**, hogy legyen egy verziószámunk hasonlóan a [SemVer](http://semver.org/) szerint, ez 0.0.1 és a negyedik szám pedig a build sorszáma, amit ezen a visualstudio.com account-on indítottunk.
+- A verziózáshoz öt lépés kell
+  - Az Android projektben az AndroidManifest.xml állományban [be kell állítani az android:versionVode="1" és az android.versionName="0.0.1.0" értékeket](https://github.com/Xamarin201702/Xamarin201702/commit/9d5ca1af43a0bf55e91ca1ea346ec298dbc1efad#diff-b6d73f2899c5113bcef8a800557a69b9), ezt fogja majd az automatikus Build átírni. Ehhez a legcélszerûbb (ahelyett, hogy kézzel írnánk az AndroidManifext állományt) jobb egérgombot nyomni az Android projekten (**Day1.Droid**) és megnyitni a **Properties** menüpontot:
+  ![](images/visualstudio46.png?raw=true)
+  - majd az **Android Manifest** lapon beállítani a két értéket
+  ![](images/visualstudio47.png?raw=true)
+  - be kell állítani a Build verziószámát a Build definíció **Options** fülén a Build number format mezõben **0.0.1.$(BuildID)**, hogy legyen egy verziószámunk hasonlóan a [SemVer](http://semver.org/) szerint, ez 0.0.1 és a negyedik szám pedig a build sorszáma, amit ezen a visualstudio.com account-on valah összesen indítottunk. Így ez a szám egyedi lesz minden Build során, az elsõ három sorszámot pedig a [SemVer](http://semver.org/) szerint kézzel állíthatjuk be.
   ![](images/visualstudio42.png?raw=true)
   - be kell állítani az AndroidManifest.xml android:versionCode mezõt, ehhez a android:versionCode="0" értéket kell átírni úgy, hogy a Build verzóból levágjuk az utolsó számot és beírjuk az android:versionCode="0" mezõbe a 0 helyére így
   ![](images/visualstudio45.png?raw=true)
   - be kell állítani az AndroidManifest.xml android:versionName mezõt, ehhez csak az AndroidManifest.xml állományt kell kiválasztani, a többi beállítást már hagyhatjuk alapértelmezett beállításokkal, így:
   ![](images/visualstudio43.png?raw=true)
   - végül, hogy a dll-ben lekérdezhetõ legyen a build verziószáma, és a felhasználónak meg tudjuk mutatni, az AssemblyInfo állomány beállítása kell, ehhez elég megadnunk a Portable projektünk megfelelõ mappáját, így:
-  - ![](images/visualstudio44.png?raw=true)
+  ![](images/visualstudio44.png?raw=true)
+  Ahhoz pedig, hogy ezt a verziószámot az alkalmazásból elérjük, [a következõ lekérdezés segíthet](https://github.com/Xamarin201702/Xamarin201702/blob/master/Day1/Day1/Day1/View/Pages/About.xaml.cs#L19):
+```
+    var asmn = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
+    labelVersion.Text = asmn.Version.ToString();
+```
 - A HockeyApp beállításához 
   - fel kell vennünk a szervizek közé külsõ szolgáltatónak. Ehhez a fogaskerék ikonra kell kattintani a HockeyApp Connection mezõ mellett:
   ![](images/visualstudio36.png?raw=true)

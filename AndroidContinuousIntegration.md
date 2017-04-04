@@ -1,119 +1,119 @@
-# Alkalmazás automatikus fordítása és feltöltése a HockeyApp-ra 
+# AlkalmazÃ¡s automatikus fordÃ­tÃ¡sa Ã©s feltÃ¶ltÃ©se a HockeyApp-ra 
 
-## Elõkészületek
+## ElÅ‘kÃ©szÃ¼letek
 
-### VisualStudio.com regisztráció
-Elsõ lépésként egy regisztrációt kell készíteni a visualstudio.com oldalra:
+### VisualStudio.com regisztrÃ¡ciÃ³
+ElsÅ‘ lÃ©pÃ©skÃ©nt egy regisztrÃ¡ciÃ³t kell kÃ©szÃ­teni a visualstudio.com oldalra:
 
 ![](images/visualstudio.png?raw=true)
 
-Ehhez kell egy microsoft account, majd a kezdéshez meg kell adni egy értelmes dns nevet, én a xamarin201702-t választottam a tanfolyam nevére utalásként. 
+Ehhez kell egy microsoft account, majd a kezdÃ©shez meg kell adni egy Ã©rtelmes dns nevet, Ã©n a xamarin201702-t vÃ¡lasztottam a tanfolyam nevÃ©re utalÃ¡skÃ©nt. 
 
 ![](images/visualstudio2.png?raw=true)
 
-Ha ezzel megvagyunk, érdemes egy új projektet felvinni, (mert a my first project név nem feltétlenül informatív), a nevet, a leírást kitöltése után a kódtár típusát hagyjuk alapértelmezett állapotban a Git-en, mert így könnyen tudjuk szinkronizálni a kódot a GitHub-bal.
+Ha ezzel megvagyunk, Ã©rdemes egy Ãºj projektet felvinni, (mert a my first project nÃ©v nem feltÃ©tlenÃ¼l informatÃ­v), a nevet, a leÃ­rÃ¡st kitÃ¶ltÃ©se utÃ¡n a kÃ³dtÃ¡r tÃ­pusÃ¡t hagyjuk alapÃ©rtelmezett Ã¡llapotban a Git-en, mert Ã­gy kÃ¶nnyen tudjuk szinkronizÃ¡lni a kÃ³dot a GitHub-bal.
 
 ![](images/visualstudio3.png?raw=true)
 
-### HockeyApp regisztráció AppId
+### HockeyApp regisztrÃ¡ciÃ³ AppId
 
-A hockeyapp.com oldalon válasszuk ki a szervizmenübõl a regisztráció beállításait:
+A hockeyapp.com oldalon vÃ¡lasszuk ki a szervizmenÃ¼bÅ‘l a regisztrÃ¡ciÃ³ beÃ¡llÃ­tÃ¡sait:
 
 ![](images/hockeyapp01.png?raw=true)
 
-innen pedig az API Tokens menüpontot:
+innen pedig az API Tokens menÃ¼pontot:
 
 ![](images/hockeyapp02.png?raw=true)
 
-majd nevezzük el a tokenünket, amit létrehozunk. Ezt a tokent fogja az automatikus build arra használni, hogy az alkalmazásunkat a hockeyapp-ra feltöltse és release-t készítsen belõle.
+majd nevezzÃ¼k el a tokenÃ¼nket, amit lÃ©trehozunk. Ezt a tokent fogja az automatikus build arra hasznÃ¡lni, hogy az alkalmazÃ¡sunkat a hockeyapp-ra feltÃ¶ltse Ã©s release-t kÃ©szÃ­tsen belÅ‘le.
 
 ![](images/hockeyapp03.png?raw=true)
 
-Jegyezzük meg az API Token értékét, ez kell majd a BUILD-hez:
+JegyezzÃ¼k meg az API Token Ã©rtÃ©kÃ©t, ez kell majd a BUILD-hez:
 
 ![](images/hockeyapp04.png?raw=true)
 
-### Aláírási tanusítvány felvétele a kódtárba
+### AlÃ¡Ã­rÃ¡si tanusÃ­tvÃ¡ny felvÃ©tele a kÃ³dtÃ¡rba
 
-A Visual Studio-ban az Android projekten nyomjunk jobb egérgombot, 
+A Visual Studio-ban az Android projekten nyomjunk jobb egÃ©rgombot, 
 
 ![](images/keystore01.png?raw=true)
 
-és válasszuk a **View Archives...** menüpontot, majd válasszuk ki az egyik talapítõcsomagot, és nyomjuk meg az **Open Folder** gombot:
+Ã©s vÃ¡lasszuk a **View Archives...** menÃ¼pontot, majd vÃ¡lasszuk ki az egyik talapÃ­tÅ‘csomagot, Ã©s nyomjuk meg az **Open Folder** gombot:
 
 ![](images/keystore02.png?raw=true)
 
-Ez megnyitja azt a könyvtárat, ahova a Xamarin az egyes csomagokat elmenti. 
+Ez megnyitja azt a kÃ¶nyvtÃ¡rat, ahova a Xamarin az egyes csomagokat elmenti. 
 
 ![](images/keystore03.png?raw=true)
 
-Itt navigáljunk ki a **Mono for Android** mappába, ott egyet be a **KeyStore** mappába, aztán tovább a solution mappába:
+Itt navigÃ¡ljunk ki a **Mono for Android** mappÃ¡ba, ott egyet be a **KeyStore** mappÃ¡ba, aztÃ¡n tovÃ¡bb a solution mappÃ¡ba:
 
 ![](images/keystore04.png?raw=true)
 
-Amire szükségünk van, az a *.keystore állomány.
+Amire szÃ¼ksÃ©gÃ¼nk van, az a *.keystore Ã¡llomÃ¡ny.
 
-**Figyelem:** Ha a tanusítványunkat nagyobb biztonságban szeretnénk tudni, vagyis nem szeretnénk feltölteni kódolatlan formában a forráskódkezelõ kódtár(ak)ba, akkor nem ezt az állományt érdemes használni, hanem openssl segítségével des3 titkosítást használva jelszóval titkosíthatjuk ezt az állományt (például a [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) segítségével, a következõ parancssal: **openssl des3 -in xamarin201702.keystore -out xamarin2017.keystore.encripted**, majd adjuk meg a titkosítás jelszavát.), és ezt az állományt használjuk a továbbiakban. Ebben az esetben a Build folyamatunkat ki kell egészíteni két lépéssel: 
- - Egyrészt az aláírás elõtt vissza kell állítani a titkosított állományból az eredetit, méghozzá a Build folyamathoz adott **Decrypt File (OpenSSL)** lépéssel a **Utility** kategóriából
+**Figyelem:** Ha a tanusÃ­tvÃ¡nyunkat nagyobb biztonsÃ¡gban szeretnÃ©nk tudni, vagyis nem szeretnÃ©nk feltÃ¶lteni kÃ³dolatlan formÃ¡ban a forrÃ¡skÃ³dkezelÅ‘ kÃ³dtÃ¡r(ak)ba, akkor nem ezt az Ã¡llomÃ¡nyt Ã©rdemes hasznÃ¡lni, hanem openssl segÃ­tsÃ©gÃ©vel des3 titkosÃ­tÃ¡st hasznÃ¡lva jelszÃ³val titkosÃ­thatjuk ezt az Ã¡llomÃ¡nyt (pÃ©ldÃ¡ul a [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) segÃ­tsÃ©gÃ©vel, a kÃ¶vetkezÅ‘ parancssal: **openssl des3 -in xamarin201702.keystore -out xamarin2017.keystore.encrypted**, majd adjuk meg a titkosÃ­tÃ¡s jelszavÃ¡t.), Ã©s ezt az Ã¡llomÃ¡nyt hasznÃ¡ljuk a tovÃ¡bbiakban. Ebben az esetben a Build folyamatunkat ki kell egÃ©szÃ­teni kÃ©t lÃ©pÃ©ssel: 
+ - EgyrÃ©szt az alÃ¡Ã­rÃ¡s elÅ‘tt vissza kell Ã¡llÃ­tani a titkosÃ­tott Ã¡llomÃ¡nybÃ³l az eredetit, mÃ©ghozzÃ¡ a Build folyamathoz adott **Decrypt File (OpenSSL)** lÃ©pÃ©ssel a **Utility** kategÃ³riÃ¡bÃ³l
 ![](images/keystore05.png?raw=true)
- - Aláírás után pedig azonnal törölni kell a titkosítatlan állományt ugyancsak a **Utility** kategória **Delete Files** lépésével
+ - AlÃ¡Ã­rÃ¡s utÃ¡n pedig azonnal tÃ¶rÃ¶lni kell a titkosÃ­tatlan Ã¡llomÃ¡nyt ugyancsak a **Utility** kategÃ³ria **Delete Files** lÃ©pÃ©sÃ©vel
 ![](images/keystore06.png?raw=true)
 
-Az aláíró állományunkat másoljuk át a forráskódunkba, és töltsük fel a kódtárba:
+Az alÃ¡Ã­rÃ³ Ã¡llomÃ¡nyunkat mÃ¡soljuk Ã¡t a forrÃ¡skÃ³dunkba, Ã©s tÃ¶ltsÃ¼k fel a kÃ³dtÃ¡rba:
 
 ![](images/keystore07.png?raw=true)
 
-### A VisualStudio.com kódtár felvétele a visual studio projektbe
+### A VisualStudio.com kÃ³dtÃ¡r felvÃ©tele a visual studio projektbe
 
-A visualstudio.com oldalon a megnyitott projektünk oldalán hívjuk elõ a kódtárat:
+A visualstudio.com oldalon a megnyitott projektÃ¼nk oldalÃ¡n hÃ­vjuk elÅ‘ a kÃ³dtÃ¡rat:
 
 ![](images/visualstudio4.png?raw=true)
 
-majd kattintsunk a Clone gombra, hogy hozzáférjünk a kódtár webes eléréséhez:
+majd kattintsunk a Clone gombra, hogy hozzÃ¡fÃ©rjÃ¼nk a kÃ³dtÃ¡r webes elÃ©rÃ©sÃ©hez:
 
 ![](images/visualstudio5.png?raw=true)
 
-ha ez megvan, másoljuk az url-t a vágólapra:
+ha ez megvan, mÃ¡soljuk az url-t a vÃ¡gÃ³lapra:
 
 ![](images/visualstudio6.png?raw=true)
 
-Nyissuk meg a Visual Studio 2015-ben a projektünket, majd a Team Explorer ablakot, és kattintsunk a Home linkre.
+Nyissuk meg a Visual Studio 2015-ben a projektÃ¼nket, majd a Team Explorer ablakot, Ã©s kattintsunk a Home linkre.
 
 ![](images/visualstudio7.png?raw=true)
 
-Majd a Settings gombot használva hozzáférünk a lokális GitHub kódtár beállításaihoz:
+Majd a Settings gombot hasznÃ¡lva hozzÃ¡fÃ©rÃ¼nk a lokÃ¡lis GitHub kÃ³dtÃ¡r beÃ¡llÃ­tÃ¡saihoz:
 
 ![](images/visualstudio8.png?raw=true)
 
-Itt válasszuk ki a Repository Settings-t:
+Itt vÃ¡lasszuk ki a Repository Settings-t:
 
 ![](images/visualstudio9.png?raw=true)
 
-vegyünk fel egy újabb Remote-ot, 
+vegyÃ¼nk fel egy Ãºjabb Remote-ot, 
 
 ![](images/visualstudio10.png?raw=true)
 
-nevezzük el, és másoljuk be a linket a vágólapról:
+nevezzÃ¼k el, Ã©s mÃ¡soljuk be a linket a vÃ¡gÃ³laprÃ³l:
 
 ![](images/visualstudio11.png?raw=true)
 
-### Kód feltöltése a Build szerverre
+### KÃ³d feltÃ¶ltÃ©se a Build szerverre
 
-Ha megvagyunk, akkor ezzel készen vagyunk az elõkészületekkel. Ha a Build kódtárba szeretnénk a kódunkat feltölteni, akkor ehhez nyissuk meg a Team Explorer ablakot, és kattintsunk a Home linkre.
+Ha megvagyunk, akkor ezzel kÃ©szen vagyunk az elÅ‘kÃ©szÃ¼letekkel. Ha a Build kÃ³dtÃ¡rba szeretnÃ©nk a kÃ³dunkat feltÃ¶lteni, akkor ehhez nyissuk meg a Team Explorer ablakot, Ã©s kattintsunk a Home linkre.
 
 ![](images/visualstudio7.png?raw=true)
 
-Majd a szinkronizálás linkre:
+Majd a szinkronizÃ¡lÃ¡s linkre:
 
 ![](images/visualstudio12.png?raw=true)
 
-**Figyelem:** Ha nem ezen a gépen fejlesztünk kizárólagosan, akkor ez elõtt a lépés elõtt le kell tölteni Pull paranccsal a GitHub kódtárból az utolsó változatot.
+**Figyelem:** Ha nem ezen a gÃ©pen fejlesztÃ¼nk kizÃ¡rÃ³lagosan, akkor ez elÅ‘tt a lÃ©pÃ©s elÅ‘tt le kell tÃ¶lteni Pull paranccsal a GitHub kÃ³dtÃ¡rbÃ³l az utolsÃ³ vÃ¡ltozatot.
 
-A megjelenõ ablakban nyissuk le a **Push** gomb lenyílóját, 
+A megjelenÅ‘ ablakban nyissuk le a **Push** gomb lenyÃ­lÃ³jÃ¡t, 
 
 ![](images/visualstudio13.png?raw=true)
 
-és célként válasszuk a most rögzített **Build** remote-ot:
+Ã©s cÃ©lkÃ©nt vÃ¡lasszuk a most rÃ¶gzÃ­tett **Build** remote-ot:
 
 ![](images/visualstudio14.png?raw=true)
 
@@ -121,17 +121,17 @@ majd nyomjuk meg a **Push** gombot:
 
 ![](images/visualstudio15.png?raw=true)
 
-Mivel szükséges hozzá, elképzelhetõ, hogy a Visual Studio megkér, hogy a Microsoft-os bejelentkezésünket erõsítsük meg névvel és jeszóval. Ezt követõen a kódunk a megfelelõ *.visualstudio.com projekt kódtárába feltöltõdik.
+Mivel szÃ¼ksÃ©ges hozzÃ¡, elkÃ©pzelhetÅ‘, hogy a Visual Studio megkÃ©r, hogy a Microsoft-os bejelentkezÃ©sÃ¼nket erÅ‘sÃ­tsÃ¼k meg nÃ©vvel Ã©s jeszÃ³val. Ezt kÃ¶vetÅ‘en a kÃ³dunk a megfelelÅ‘ *.visualstudio.com projekt kÃ³dtÃ¡rÃ¡ba feltÃ¶ltÅ‘dik.
 
 ![](images/visualstudio16.png?raw=true)
 
-Ellenõrizhetjük a weboldalon is:
+EllenÅ‘rizhetjÃ¼k a weboldalon is:
 
 ![](images/visualstudio17.png?raw=true)
 
-## Build definíció létrehozása
+## Build definÃ­ciÃ³ lÃ©trehozÃ¡sa
 
-A visualstudio.com oldalon a projekten belül kattintsunk a **Build & Release** linkre:
+A visualstudio.com oldalon a projekten belÃ¼l kattintsunk a **Build & Release** linkre:
 
 ![](images/visualstudio18.png?raw=true)
 
@@ -139,103 +139,103 @@ majd a **+New** gombra:
 
 ![](images/visualstudio19.png?raw=true)
 
-(Bekapcsoltam az új build definíció szerkesztõt, így a képeken látható kinézet eltérhet a konkrét esetben, de a tartalom azonos.)
+(Bekapcsoltam az Ãºj build definÃ­ciÃ³ szerkesztÅ‘t, Ã­gy a kÃ©peken lÃ¡thatÃ³ kinÃ©zet eltÃ©rhet a konkrÃ©t esetben, de a tartalom azonos.)
 
-A megjelenõ listából közül válasszuk ki a **Xamarin.Android** template-et:
+A megjelenÅ‘ listÃ¡bÃ³l kÃ¶zÃ¼l vÃ¡lasszuk ki a **Xamarin.Android** template-et:
 
 ![](images/visualstudio20.png?raw=true)
 
-**Figyelem:** vegyük észre, hogy nem Visual Studio buildet használunk, hanem Xamarin Studio buildet.
+**Figyelem:** vegyÃ¼k Ã©szre, hogy nem Visual Studio buildet hasznÃ¡lunk, hanem Xamarin Studio buildet.
 
 A 
  - Xamarin component restore, 
- - a (Visual Studio) Build solution **/*test*.csproj és a 
+ - a (Visual Studio) Build solution **/*test*.csproj Ã©s a 
  - Test $(build.binariesdirectory)
 
 ![](images/visualstudio21.png?raw=true)
 
-lépések törölhetõek, ezekre ebben a megoldásban nem lesz szükség. Ami marad, az a következõ:
+lÃ©pÃ©sek tÃ¶rÃ¶lhetÅ‘ek, ezekre ebben a megoldÃ¡sban nem lesz szÃ¼ksÃ©g. Ami marad, az a kÃ¶vetkezÅ‘:
 
 ![](images/visualstudio22.png?raw=true)
 
-Menjünk végig az egyes Build lépéseken. 
-- Elsõ a **Get sources**, ez arra szolgál, hogy letöltsük a kódtárból a build ügyfél gépre a forráskódot. Érdemes bekapcsolni az Advanced settings láthatóságát, hogy minden paramétert lássunk, de nem állítunk az alapértelmezett beállításokon. Ha itt bekapcsoljuk a Clean kapcsolót, akkor mindig üres kódtárba húzzuk le a forráskódot, különben (ha ugyanazt a klienst kapjuk) a korábbi forráskódra csak az azóta keletkezett commit módosítások kerülnek. Ez sebességben jelenthet különbséget, illetve, ha módosítunk a forráskódon a Build során, akkor erre vigyázni kell.
+MenjÃ¼nk vÃ©gig az egyes Build lÃ©pÃ©seken. 
+- ElsÅ‘ a **Get sources**, ez arra szolgÃ¡l, hogy letÃ¶ltsÃ¼k a kÃ³dtÃ¡rbÃ³l a build Ã¼gyfÃ©l gÃ©pre a forrÃ¡skÃ³dot. Ã‰rdemes bekapcsolni az Advanced settings lÃ¡thatÃ³sÃ¡gÃ¡t, hogy minden paramÃ©tert lÃ¡ssunk, de nem Ã¡llÃ­tunk az alapÃ©rtelmezett beÃ¡llÃ­tÃ¡sokon. Ha itt bekapcsoljuk a Clean kapcsolÃ³t, akkor mindig Ã¼res kÃ³dtÃ¡rba hÃºzzuk le a forrÃ¡skÃ³dot, kÃ¼lÃ¶nben (ha ugyanazt a klienst kapjuk) a korÃ¡bbi forrÃ¡skÃ³dra csak az azÃ³ta keletkezett commit mÃ³dosÃ­tÃ¡sok kerÃ¼lnek. Ez sebessÃ©gben jelenthet kÃ¼lÃ¶nbsÃ©get, illetve, ha mÃ³dosÃ­tunk a forrÃ¡skÃ³don a Build sorÃ¡n, akkor erre vigyÃ¡zni kell.
 ![](images/visualstudio23.png?raw=true)
-- A **Nuget restore **\*.sln*** arra szolgál, hogy a nuget csomagokat letöltsük a forráskód mellé. Ezeken a beállításokon sem érdemes módosítani.
+- A **Nuget restore **\*.sln*** arra szolgÃ¡l, hogy a nuget csomagokat letÃ¶ltsÃ¼k a forrÃ¡skÃ³d mellÃ©. Ezeken a beÃ¡llÃ­tÃ¡sokon sem Ã©rdemes mÃ³dosÃ­tani.
 ![](images/visualstudio24.png?raw=true)
-- A **Build Xamarin.Android** projekt lépésben figyelni kell a Java Developer Toolkit (JDK) beállításra, és be kell állítani **JDK8**-ra, mást nem kell átállítani.
+- A **Build Xamarin.Android** projekt lÃ©pÃ©sben figyelni kell a Java Developer Toolkit (JDK) beÃ¡llÃ­tÃ¡sra, Ã©s be kell Ã¡llÃ­tani **JDK8**-ra, mÃ¡st nem kell Ã¡tÃ¡llÃ­tani.
 ![](images/visualstudio25.png?raw=true)
-- A következõ lépés a **Signing and aligning APK file**. Itt tallózuk ki a korábban feltöltött *.keystore állományt (opcionálisan egy lépéssel korábban dekódoljuk), pipáljuk be a **Sign the APK** és a **Zipalign** kapcsolókat, majd töltsük ki a jelszavakat és az Alias-t. 
+- A kÃ¶vetkezÅ‘ lÃ©pÃ©s a **Signing and aligning APK file**. Itt tallÃ³zuk ki a korÃ¡bban feltÃ¶ltÃ¶tt *.keystore Ã¡llomÃ¡nyt (opcionÃ¡lisan egy lÃ©pÃ©ssel korÃ¡bban dekÃ³doljuk), pipÃ¡ljuk be a **Sign the APK** Ã©s a **Zipalign** kapcsolÃ³kat, majd tÃ¶ltsÃ¼k ki a jelszavakat Ã©s az Alias-t. 
 ![](images/visualstudio26.png?raw=true)
-- Ha a változók közé felvesszük rejtettnek õket, akkor többet a felületrõl nem olvashatók, így a jelszavak nagyobb biztonságban vannak. Ebben az esetben a változó értékére **$(változónév)** formában hivatkozhatunk bármelyik mezõben.
+- Ha a vÃ¡ltozÃ³k kÃ¶zÃ© felvesszÃ¼k rejtettnek Å‘ket, akkor tÃ¶bbet a felÃ¼letrÅ‘l nem olvashatÃ³k, Ã­gy a jelszavak nagyobb biztonsÃ¡gban vannak. Ebben az esetben a vÃ¡ltozÃ³ Ã©rtÃ©kÃ©re **$(vÃ¡ltozÃ³nÃ©v)** formÃ¡ban hivatkozhatunk bÃ¡rmelyik mezÅ‘ben.
 ![](images/visualstudio27.png?raw=true)
-- Az (egyelõre) utolsó lépés a **Publish Artifact: drop** beállításain nem kell módosítani:
+- Az (egyelÅ‘re) utolsÃ³ lÃ©pÃ©s a **Publish Artifact: drop** beÃ¡llÃ­tÃ¡sain nem kell mÃ³dosÃ­tani:
 ![](images/visualstudio28.png?raw=true)
 
-Ha ezzel megvagyunk, indíthatunk egy Build-et a Save & queue linkkel:
+Ha ezzel megvagyunk, indÃ­thatunk egy Build-et a Save & queue linkkel:
 
 ![](images/visualstudio29.png?raw=true)
 
-hogy az eddigiek mûködését ellenõrizzük. Ha ez jól lefutott, akkor folytathatjuk tovább, két fontos rész hiányzik a build folyamatunkból.
+hogy az eddigiek mÅ±kÃ¶dÃ©sÃ©t ellenÅ‘rizzÃ¼k. Ha ez jÃ³l lefutott, akkor folytathatjuk tovÃ¡bb, kÃ©t fontos rÃ©sz hiÃ¡nyzik a build folyamatunkbÃ³l.
 
-- Verziózás
-- Feltöltés a HockeyApp oldalra
+- VerziÃ³zÃ¡s
+- FeltÃ¶ltÃ©s a HockeyApp oldalra
 
-Mindkettõhöz kiegészítéseket kell telepítenünk a Visual Studio Marketplace-rõl, méghozzá a **Browse Marketplace** menüpont segítségével innen:
+MindkettÅ‘hÃ¶z kiegÃ©szÃ­tÃ©seket kell telepÃ­tenÃ¼nk a Visual Studio Marketplace-rÅ‘l, mÃ©ghozzÃ¡ a **Browse Marketplace** menÃ¼pont segÃ­tsÃ©gÃ©vel innen:
 
 ![](images/visualstudio30.png?raw=true)
 
-A hockeyapp integrációhoz telepítsük a hockeyapp extension-t, 
+A hockeyapp integrÃ¡ciÃ³hoz telepÃ­tsÃ¼k a hockeyapp extension-t, 
 
 ![](images/visualstudio32.png?raw=true)
 
-A verziózáshoz telepítsük a **Colin's ALM Corner Build & Release Tools**-t:
+A verziÃ³zÃ¡shoz telepÃ­tsÃ¼k a **Colin's ALM Corner Build & Release Tools**-t:
 
 ![](images/visualstudio31.png?raw=true)
 
-Ha ez megvan, menjünk vissza a Build definícióba, és a **+ Add Task** link segítségével adjunk hozzá három Version Assemblies lépést a Build kategóriából:
+Ha ez megvan, menjÃ¼nk vissza a Build definÃ­ciÃ³ba, Ã©s a **+ Add Task** link segÃ­tsÃ©gÃ©vel adjunk hozzÃ¡ hÃ¡rom Version Assemblies lÃ©pÃ©st a Build kategÃ³riÃ¡bÃ³l:
 
 ![](images/visualstudio33.png?raw=true)
 
-és egy HockeyApp lépést a Deploy kategóriából:
+Ã©s egy HockeyApp lÃ©pÃ©st a Deploy kategÃ³riÃ¡bÃ³l:
 
 ![](images/visualstudio34.png?raw=true)
 
-a következõképpen rendezve õket:
+a kÃ¶vetkezÅ‘kÃ©ppen rendezve Å‘ket:
 
 ![](images/visualstudio35.png?raw=true)
 
-A három **Version Assemblies** a **Build Xamarin.Android** lépés elé kerül, **HockeyApp** pedig a Build legvégére.
+A hÃ¡rom **Version Assemblies** a **Build Xamarin.Android** lÃ©pÃ©s elÃ© kerÃ¼l, **HockeyApp** pedig a Build legvÃ©gÃ©re.
 
-A beállításuk pedig a következõ:
-- A verziózáshoz öt lépés kell
-  - Az Android projektben az AndroidManifest.xml állományban [be kell állítani az android:versionVode="1" és az android.versionName="0.0.1.0" értékeket](https://github.com/Xamarin201702/Xamarin201702/commit/9d5ca1af43a0bf55e91ca1ea346ec298dbc1efad#diff-b6d73f2899c5113bcef8a800557a69b9), ezt fogja majd az automatikus Build átírni. Ehhez a legcélszerûbb (ahelyett, hogy kézzel írnánk az AndroidManifext állományt) jobb egérgombot nyomni az Android projekten (**Day1.Droid**) és megnyitni a **Properties** menüpontot:
+A beÃ¡llÃ­tÃ¡suk pedig a kÃ¶vetkezÅ‘:
+- A verziÃ³zÃ¡shoz Ã¶t lÃ©pÃ©s kell
+  - Az Android projektben az AndroidManifest.xml Ã¡llomÃ¡nyban [be kell Ã¡llÃ­tani az android:versionVode="1" Ã©s az android.versionName="0.0.1.0" Ã©rtÃ©keket](https://github.com/Xamarin201702/Xamarin201702/commit/9d5ca1af43a0bf55e91ca1ea346ec298dbc1efad#diff-b6d73f2899c5113bcef8a800557a69b9), ezt fogja majd az automatikus Build Ã¡tÃ­rni. Ehhez a legcÃ©lszerÅ±bb (ahelyett, hogy kÃ©zzel Ã­rnÃ¡nk az AndroidManifext Ã¡llomÃ¡nyt) jobb egÃ©rgombot nyomni az Android projekten (**Day1.Droid**) Ã©s megnyitni a **Properties** menÃ¼pontot:
   ![](images/visualstudio46.png?raw=true)
-  - majd az **Android Manifest** lapon beállítani a két értéket
+  - majd az **Android Manifest** lapon beÃ¡llÃ­tani a kÃ©t Ã©rtÃ©ket
   ![](images/visualstudio47.png?raw=true)
-  - be kell állítani a Build verziószámát a Build definíció **Options** fülén a Build number format mezõben **0.0.1.$(BuildID)**, hogy legyen egy verziószámunk hasonlóan a [SemVer](http://semver.org/) szerint, ez 0.0.1 és a negyedik szám pedig a build sorszáma, amit ezen a visualstudio.com account-on valah összesen indítottunk. Így ez a szám egyedi lesz minden Build során, az elsõ három sorszámot pedig a [SemVer](http://semver.org/) szerint kézzel állíthatjuk be.
+  - be kell Ã¡llÃ­tani a Build verziÃ³szÃ¡mÃ¡t a Build definÃ­ciÃ³ **Options** fÃ¼lÃ©n a Build number format mezÅ‘ben **0.0.1.$(BuildID)**, hogy legyen egy verziÃ³szÃ¡munk hasonlÃ³an a [SemVer](http://semver.org/) szerint, ez 0.0.1 Ã©s a negyedik szÃ¡m pedig a build sorszÃ¡ma, amit ezen a visualstudio.com account-on valah Ã¶sszesen indÃ­tottunk. Ãgy ez a szÃ¡m egyedi lesz minden Build sorÃ¡n, az elsÅ‘ hÃ¡rom sorszÃ¡mot pedig a [SemVer](http://semver.org/) szerint kÃ©zzel Ã¡llÃ­thatjuk be.
   ![](images/visualstudio42.png?raw=true)
-  - be kell állítani az AndroidManifest.xml android:versionCode mezõt, ehhez a android:versionCode="0" értéket kell átírni úgy, hogy a Build verzóból levágjuk az utolsó számot és beírjuk az android:versionCode="0" mezõbe a 0 helyére így
+  - be kell Ã¡llÃ­tani az AndroidManifest.xml android:versionCode mezÅ‘t, ehhez a android:versionCode="0" Ã©rtÃ©ket kell Ã¡tÃ­rni Ãºgy, hogy a Build verzÃ³bÃ³l levÃ¡gjuk az utolsÃ³ szÃ¡mot Ã©s beÃ­rjuk az android:versionCode="0" mezÅ‘be a 0 helyÃ©re Ã­gy
   ![](images/visualstudio45.png?raw=true)
-  - be kell állítani az AndroidManifest.xml android:versionName mezõt, ehhez csak az AndroidManifest.xml állományt kell kiválasztani, a többi beállítást már hagyhatjuk alapértelmezett beállításokkal, így:
+  - be kell Ã¡llÃ­tani az AndroidManifest.xml android:versionName mezÅ‘t, ehhez csak az AndroidManifest.xml Ã¡llomÃ¡nyt kell kivÃ¡lasztani, a tÃ¶bbi beÃ¡llÃ­tÃ¡st mÃ¡r hagyhatjuk alapÃ©rtelmezett beÃ¡llÃ­tÃ¡sokkal, Ã­gy:
   ![](images/visualstudio43.png?raw=true)
-  - végül, hogy a dll-ben lekérdezhetõ legyen a build verziószáma, és a felhasználónak meg tudjuk mutatni, az AssemblyInfo állomány beállítása kell, ehhez elég megadnunk a Portable projektünk megfelelõ mappáját, így:
+  - vÃ©gÃ¼l, hogy a dll-ben lekÃ©rdezhetÅ‘ legyen a build verziÃ³szÃ¡ma, Ã©s a felhasznÃ¡lÃ³nak meg tudjuk mutatni, az AssemblyInfo Ã¡llomÃ¡ny beÃ¡llÃ­tÃ¡sa kell, ehhez elÃ©g megadnunk a Portable projektÃ¼nk megfelelÅ‘ mappÃ¡jÃ¡t, Ã­gy:
   ![](images/visualstudio44.png?raw=true)
-  Ahhoz pedig, hogy ezt a verziószámot az alkalmazásból elérjük, [a következõ lekérdezés segíthet](https://github.com/Xamarin201702/Xamarin201702/blob/master/Day1/Day1/Day1/View/Pages/About.xaml.cs#L19):
+  Ahhoz pedig, hogy ezt a verziÃ³szÃ¡mot az alkalmazÃ¡sbÃ³l elÃ©rjÃ¼k, [a kÃ¶vetkezÅ‘ lekÃ©rdezÃ©s segÃ­thet](https://github.com/Xamarin201702/Xamarin201702/blob/master/Day1/Day1/Day1/View/Pages/About.xaml.cs#L19):
 ```
     var asmn = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
     labelVersion.Text = asmn.Version.ToString();
 ```
-- A HockeyApp beállításához 
-  - fel kell vennünk a szervizek közé külsõ szolgáltatónak. Ehhez a fogaskerék ikonra kell kattintani a HockeyApp Connection mezõ mellett:
+- A HockeyApp beÃ¡llÃ­tÃ¡sÃ¡hoz 
+  - fel kell vennÃ¼nk a szervizek kÃ¶zÃ© kÃ¼lsÅ‘ szolgÃ¡ltatÃ³nak. Ehhez a fogaskerÃ©k ikonra kell kattintani a HockeyApp Connection mezÅ‘ mellett:
   ![](images/visualstudio36.png?raw=true)
-  - Az új szerviz végpont felvitelénél kiválasztva a HockeyApp-ot
+  - Az Ãºj szerviz vÃ©gpont felvitelÃ©nÃ©l kivÃ¡lasztva a HockeyApp-ot
   ![](images/visualstudio37.png?raw=true)
-  - A kapott ablakba fel kell vinni a a HockeyApp szerviz API Tokenjét, a megnevezés tetszõleges, csak a VisualStudio.com build-ben hivatkozunk majd ezzel a névvel.
+  - A kapott ablakba fel kell vinni a a HockeyApp szerviz API TokenjÃ©t, a megnevezÃ©s tetszÅ‘leges, csak a VisualStudio.com build-ben hivatkozunk majd ezzel a nÃ©vvel.
   ![](images/visualstudio39.png?raw=true)
-  - Miután ezzel megvagyunk, visszamegyünk a Build definícióra, és a **HockeyApp connection** mezõ mellett a frissítés ikonra kattintunk:
+  - MiutÃ¡n ezzel megvagyunk, visszamegyÃ¼nk a Build definÃ­ciÃ³ra, Ã©s a **HockeyApp connection** mezÅ‘ mellett a frissÃ­tÃ©s ikonra kattintunk:
   ![](images/visualstudio40.png?raw=true)
-  - be kell még állítanunk az App ID-t, célszerûen ezt is változóként titkosítva, itt az App ID mezõben pedig $(változónév) segítségével a titkos értéket betöltve.
-  - meg kell adnunk a Binary File Path mezõben a következõt: **$(build.binariesdirectory)/$(BuildConfiguration)/*.apk**
+  - be kell mÃ©g Ã¡llÃ­tanunk az App ID-t, cÃ©lszerÅ±en ezt is vÃ¡ltozÃ³kÃ©nt titkosÃ­tva, itt az App ID mezÅ‘ben pedig $(vÃ¡ltozÃ³nÃ©v) segÃ­tsÃ©gÃ©vel a titkos Ã©rtÃ©ket betÃ¶ltve.
+  - meg kell adnunk a Binary File Path mezÅ‘ben a kÃ¶vetkezÅ‘t: **$(build.binariesdirectory)/$(BuildConfiguration)/*.apk**
   ![](images/visualstudio41.png?raw=true)
-  - Mást a HockeyApp-nál nem kell beállítani.
+  - MÃ¡st a HockeyApp-nÃ¡l nem kell beÃ¡llÃ­tani.

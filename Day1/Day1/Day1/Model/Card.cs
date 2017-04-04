@@ -1,5 +1,6 @@
 ﻿using Day1.Services;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -26,7 +27,7 @@ namespace Day1.Model
                 pw.PhoneCall(this.Description);
             }
         }
-
+        [Required(ErrorMessage = "Ezt a mezőt mindenképpen ki kell tölteni!")]
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsPhoneCallCard { get; set; }

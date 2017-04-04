@@ -6,7 +6,9 @@ namespace Day1.Model
     public class NewList : ViewModelBase
     {
         private string newListName;
-        [Required(ErrorMessage = "Az új lista nevét kötelező megadni!")]
+
+        //validációs argumentum, ilyenekkel lehet a validálást beállítani
+        [Required(ErrorMessage = "Az új lista nevét kötelező megadni!")] 
         public string NewListName
         {
             get { return newListName; }

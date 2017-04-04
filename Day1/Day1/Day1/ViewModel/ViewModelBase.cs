@@ -11,6 +11,9 @@ namespace Day1.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Az adott ViewModel példány ValidationManager-e
+        /// </summary>
         private ValidationManager validationManager;
 
         public ViewModelBase()
@@ -18,14 +21,19 @@ namespace Day1.ViewModel
             validationManager = new ValidationManager(this);
         }
 
+        /// <summary>
+        /// A ValidationManager indexerének a publikálásához,
+        /// így a View hozzáfér a hibaüzenetekhez az egyes propertyName-eken
+        /// </summary>
         public ValidationManager Errors
         {
-            get
-            {
-                return validationManager;
-            }
+            get { return validationManager; }
         }
 
+        /// <summary>
+        /// A ViewModel validációja
+        /// </summary>
+        /// <returns>True, ha az adatok érvényesek, False, ha nem</returns>
         public bool IsValid()
         {
             return validationManager.IsValid();
@@ -45,7 +53,7 @@ namespace Day1.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        internal void SetProperty<T>(T value, ref T backingField, [CallerMemberName]string propertyName = null)
+        protected void SetProperty<T>(T value, ref T backingField, [CallerMemberName]string propertyName = null)
         {
             if (
                 (backingField!=null && backingField.Equals(value))
@@ -57,7 +65,7 @@ namespace Day1.ViewModel
             }
             backingField = value;
             //Mivel ez a változási pont minden esetben, 
-            //itt kéne a validációnak lefutnia
+            //Itt a változott értékre validálunk
             validationManager.ValidateProperty(propertyName);
 
             OnPropertyChanged(propertyName);

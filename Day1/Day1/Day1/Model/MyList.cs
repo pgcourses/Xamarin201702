@@ -22,6 +22,10 @@ namespace Day1.Model
         // innentől Viewmodel
         public bool IsLastPage { get; set; } = false;
 
+        //Azért, hogy a validálást objektum.Errors hivatkozással
+        //használni tudjuk, a kérdéses mezőt becsomagoljuk egy osztályba, de 
+        //ez általában a Viewmodel maga, csak ez most egy bonyolult 
+        //többképernyős ViewModel
         private NewList newList = new NewList();
         public NewList NewList
         {

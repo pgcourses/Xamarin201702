@@ -28,22 +28,41 @@ namespace Day1.Validation
 
     public class ValidationManager : INotifyPropertyChanged
     {
+        /// <summary>
+        /// A ViewModel amit ez a manager validál
+        /// </summary>
         private ViewModelBase viewModel;
 
+        /// <summary>
+        /// Hibák táblázata, ld a fenti rajzot
+        /// </summary>
         private IDictionary<string, ReadOnlyCollection<string>> errors
             = new Dictionary<string, ReadOnlyCollection<string>>();
 
+        /// <summary>
+        /// Ahhoz, hogy a hibák megjelenítéset adatkötésben meg tudjuk jeleníteni, 
+        /// meg kell valósítanunk az INotifyPropertyChanged-et
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Konstruktor, DI-vel kapja a validálandó ViewModelt
+        /// </summary>
+        /// <param name="viewModel"></param>
         public ValidationManager(ViewModelBase viewModel)
         {
             this.viewModel = viewModel;
         }
 
+        /// <summary>
+        /// Indexer, 
+        /// </summary>
+        /// <param name="propertyName">Amelyik property hibaüzeneteire kíváncsiak vagyunk</param>
+        /// <returns>visszatér a hibaüzenetek listájával</returns>
         public ReadOnlyCollection<string> this[string propertyName]
         {
             get
@@ -64,6 +83,10 @@ namespace Day1.Validation
             }
         }
 
+        /// <summary>
+        /// Egy property validációja. A Viewmodel hivja, ha a property-t valaki módosította 
+        /// </summary>
+        /// <param name="propertyName">A property neve. amit validálni kell</param>
         public void ValidateProperty(string propertyName)
         {
             if (string.IsNullOrWhiteSpace(propertyName))
@@ -135,7 +158,10 @@ namespace Day1.Validation
             return new ReadOnlyCollection<string>(errorList);
         }
 
-        //Ez a gombok miatt kell, hogy ne tudjak ellépni az oldalról
+        /// <summary>
+        /// Az egész ViewModel-t validálja, azért kell, hogy ne lehessen ellépni az oldalról
+        /// </summary>
+        /// <returns>True, ha az adatok érvényesek (tovább lehet menni), False, ha nem</returns>
         public bool IsValid()
         {
             //A kérdés valamennyi property-re vonatkozik
@@ -146,10 +172,11 @@ namespace Day1.Validation
                                             pi.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.ValidationAttribute))
                                               .Any());
             foreach (PropertyInfo pi in toValidate)
-            {
+            { //Ezeken validálunk a korábbi módon
                 ValidateProperty(pi.Name);
             }
 
+            //Ha nincs egy hibaüzenet sem, akkor az adatok érvényesek
             return errors.Count == 0;
         }
     }

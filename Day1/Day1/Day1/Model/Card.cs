@@ -1,4 +1,5 @@
 ﻿using Day1.Services;
+using Day1.ViewModel;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -7,13 +8,20 @@ using Xamarin.Forms;
 
 namespace Day1.Model
 {
-    public class Card
+    public class Card : ViewModelBase
     {
 
         public Card()
         {
+            //PhoneCallCommand = new Command(OnPhoneCallClicked, IsExecutable);
             PhoneCallCommand = new Command(OnPhoneCallClicked);
         }
+
+        //https://github.com/Xamarin201702/Xamarin201702/issues/12
+        //private bool IsExecutable(object param)
+        //{
+        //    return IsValid();
+        //}
 
         private void OnPhoneCallClicked(object obj)
         {

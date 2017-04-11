@@ -115,7 +115,7 @@ namespace Day1.View
         //    ItemsSource = model;
         //}
 
-        private void btnSave_Clicked(object sender, EventArgs e)
+        private async void btnSave_Clicked(object sender, EventArgs e)
         {
             //Melyik lapon vagyunk:
             //CurrentPage
@@ -132,7 +132,8 @@ namespace Day1.View
             if (!mylist.NewList.IsValid())
             {
                 //akkor üzenni, hogy nem lehet elmenteni
-
+                await DisplayAlert("Érvénytelen adatok", "A bevitt adatok nem felelnek meg!", "Rendben");
+                return;
             }
 
             //Az aktuális lap adatforrása:

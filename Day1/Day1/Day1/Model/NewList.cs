@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Day1.Model
 {
-    public class NewList : ViewModelBase
+    public class NewList : ValidableModelBase
     {
         private string newListName;
 

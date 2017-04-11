@@ -55,7 +55,8 @@ namespace Day1.View.MainMenu
         {
             if (Detail!=null)
             {
-                if (Device.Idiom != TargetIdiom.Tablet)
+                if (Device.Idiom != TargetIdiom.Tablet
+                    && Device.Idiom != TargetIdiom.Desktop)
                 {
                     //Ezt csak akkor, ha nem tableten vagyunk
                     IsPresented = false;

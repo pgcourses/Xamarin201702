@@ -45,6 +45,7 @@
     <Compile Include="Model\NewList.cs" />
     <Compile Include="Validation\ValidationManager.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\ValidableModelBase.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\IMyListRepository.cs" />

@@ -41,8 +41,10 @@
     <Compile Include="Converter\IsHorizontalToStackLayoutOrientation.cs" />
     <Compile Include="Converter\NegateBoolConverter.cs" />
     <Compile Include="Converter\StringListToStringConverter.cs" />
+    <Compile Include="Data\SqliteDatabase.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\IFileService.cs" />
+    <Compile Include="Model\MyListSqliteRepository.cs" />
     <Compile Include="Model\NewList.cs" />
     <Compile Include="Validation\ValidationManager.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />

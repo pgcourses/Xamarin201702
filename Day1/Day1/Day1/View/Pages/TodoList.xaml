@@ -54,6 +54,12 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
+                                        <ViewCell.ContextActions>
+                                            <MenuItem x:Name="CardModify" CommandParameter="{Binding .}" 
+                                                      Clicked="CardModify_Clicked" Text="Módosítás" />
+                                            <MenuItem x:Name="CardDelete" CommandParameter="{Binding .}" 
+                                                      Clicked="CardDelete_Clicked" Text="Törlés" />
+                                        </ViewCell.ContextActions>
                                         <StackLayout>
                                             <Label Text="{Binding Title}" Font="20" 
                                                Style="{DynamicResource labelStyle}"/>

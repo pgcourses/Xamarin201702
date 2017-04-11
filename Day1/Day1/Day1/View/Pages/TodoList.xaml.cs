@@ -67,12 +67,14 @@ namespace Day1.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TodoList : TabbedPage
     {
+        private IMyListRepository repository;
+
         public TodoList()
         {
             InitializeComponent();
             //A DI szerviz segítségével példányosítunk egy példányt ezzel a felülettel.
-            var repo = DependencyService.Get<IMyListRepository>();
-            ItemsSource=repo.GetLists();
+            repository = DependencyService.Get<IMyListRepository>();
+            ItemsSource=repository.GetLists();
             SizeChanged += TodoList_SizeChanged;
         }
 
@@ -117,16 +119,6 @@ namespace Day1.View
 
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
-            //Melyik lapon vagyunk:
-            //CurrentPage
-            //Hányadik lapon vagyunk (-1)
-            //Children.IndexOf(CurrentPage)
-            var model = ItemsSource as IList<MyList>;
-            if (model == null)
-            {
-                //throw new ArgumentException(nameof(model));
-                return;
-            }
 
             var mylist = SelectedItem as MyList;
             if (!mylist.NewList.IsValid())
@@ -136,28 +128,14 @@ namespace Day1.View
                 return;
             }
 
-            //Az aktuális lap adatforrása:
-            //var list = SelectedItem as MyList;
-            //if (list == null)
-            //{
-            //    return;
-            //}
-
             //Megkeressük az oldalunknak megfelelő viewmodel elemet
             var pageIndex = Children.IndexOf(CurrentPage);
+            
+            //Módosítjuk az adatforrást
+            repository.AddList(new MyList { Title = mylist.NewList.NewListName });
 
-            //töröljük a beviteli mezőt
-
-            //felvisszük az új listaelemet a végére
-            model.Add(new MyList { Title = model[pageIndex].NewList.NewListName });
-
-            //majd megcseréljük az utolsó két elemet
-            var tmp = model[pageIndex + 1];
-            model[pageIndex + 1] = model[pageIndex];
-            model[pageIndex] = tmp;
-
-            //A beviteli mezőt kiürítjük
-            model[pageIndex + 1].NewList.NewListName = string.Empty;
+            //Majd a módosított adatokat lekérdezve újra beállítjuk a felületet
+            ItemsSource = repository.GetLists();
 
             //ráállunk az újonnan felvitt listaelemre
             CurrentPage = Children[pageIndex];
@@ -231,9 +209,25 @@ namespace Day1.View
 
         }
 
-        //private void btnPhoneCall_Clicked(object sender, EventArgs e)
-        //{
+        private void CardModify_Clicked(object sender, EventArgs e)
+        {
+            var mi = sender as MenuItem;
+            if (mi != null)
+            {
+                DisplayAlert("modify Action", $"Paraméter: {mi.CommandParameter}", "OK");
+            }
 
-        //}
+        }
+
+        private void CardDelete_Clicked(object sender, EventArgs e)
+        {
+            var mi = sender as MenuItem;
+            if (mi != null)
+            { 
+                DisplayAlert("delete Action", $"Paraméter: {mi.CommandParameter}", "OK");
+            }
+
+        }
+
     }
 }

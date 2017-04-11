@@ -41,8 +41,10 @@
     <Compile Include="Converter\IsHorizontalToStackLayoutOrientation.cs" />
     <Compile Include="Converter\NegateBoolConverter.cs" />
     <Compile Include="Converter\StringListToStringConverter.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\NewList.cs" />
     <Compile Include="Validation\ValidationManager.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\IMyListRepository.cs" />
@@ -61,6 +63,9 @@
     </Compile>
     <Compile Include="View\Pages\ContactList.xaml.cs">
       <DependentUpon>ContactList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TodoList.xaml.cs">
       <DependentUpon>TodoList.xaml</DependentUpon>
@@ -94,6 +99,14 @@
     </Reference>
     <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.4\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.4\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations">
@@ -170,7 +183,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="View\Pages\Settings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Validation\info.txt" />
   </ItemGroup>

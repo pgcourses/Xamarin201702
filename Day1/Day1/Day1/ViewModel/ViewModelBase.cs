@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Day1.ViewModel
 {
+    /// <summary>
+    /// Ez az ősosztálya a ViewModel-eknek
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>

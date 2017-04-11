@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Day1.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,15 +10,13 @@ using Xamarin.Forms.Xaml;
 
 namespace Day1.View.Pages
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class About : ContentPage
+    public partial class Settings : ContentPage
     {
-        public About()
+        public Settings()
         {
             InitializeComponent();
-            var asmn = new AssemblyName(typeof(App).GetTypeInfo().Assembly.FullName);
-            labelVersion.Text = asmn.Version.ToString();
+            BindingContext = new SettingsViewModel();
         }
     }
 }

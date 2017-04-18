@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Day1.View.Pages.RestApiPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Text="High" Grid.Column="0" Grid.Row="0"/>
+        <Label Text="{Binding High}" Grid.Column="1" Grid.Row="0"/>
+
+        <Label Text="Last" Grid.Column="0" Grid.Row="1"/>
+        <Label Text="{Binding Last}" Grid.Column="1" Grid.Row="1"/>
+
+        <Label Text="Bid" Grid.Column="0" Grid.Row="2"/>
+        <Label Text="{Binding Bid}" Grid.Column="1" Grid.Row="2"/>
+    </Grid>
+
+
+</ContentPage>

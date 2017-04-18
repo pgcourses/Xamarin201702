@@ -62,5 +62,10 @@ namespace Day1.Model
         {
             return new ObservableCollection<MyListViewModel>(list);
         }
+
+        public void SavePicture(MyListViewModel mylist)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

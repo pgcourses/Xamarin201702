@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace Day1.Model
         {
             Cards = new List<CardViewModel>();
         }
+
+        public int Id { get; set; }
 
         public List<CardViewModel> Cards { get; set; }
         public string Title { get; set; }
@@ -33,9 +36,32 @@ namespace Day1.Model
             set { SetProperty(value, ref newList); }
         }
 
+        #region Kép megjelenítése és mentése segéd property-k és függvények
 
+        private byte[] pictureAsByte;
+        public byte[] PictureAsByte
+        {
+            get
+            {
+                return pictureAsByte;
+            }
+            set
+            {
+                pictureAsByte = value ?? new byte[0];
+                //figyelem, kitölteni az ImageSource-t
+                Picture = ImageSource.FromStream(
+                    () => new MemoryStream(pictureAsByte)
+                );
+            }
+        }
+
+        #endregion Kép megjelenítése és mentése segéd property-k és függvények
 
         private ImageSource picture;
+        /// <summary>
+        /// A megjelenítést szolgáló property, ha kitöltjük
+        /// a felületen megjelenik a kép
+        /// </summary>
         public ImageSource Picture
         {
             get { return picture; }

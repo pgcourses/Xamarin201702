@@ -193,20 +193,18 @@ namespace Day1.View
                 return;
             }
 
-            //mylist.Picture = ImageSource.FromStream(() =>
-            //{
-            //    var stream = file.GetStream();
-            //    stream.Position = 0;
-            //    var memstream = new MemoryStream();
-            //    stream.CopyTo(memstream);
-            //    memstream.Position = 0; //enélkül nem mutatja meg a képet
-            //    file.Dispose();
-            //    //return stream;
-            //    return memstream;
-            //});
+            //mylist.FileName = file.Path;
+            //Ez átköltözött a ViewModel-be
+            //mylist.Picture = ImageSource.FromFile(file.Path);
 
-            mylist.Picture = ImageSource.FromFile(file.Path);
-
+            using (var stream = file.GetStream())
+            {
+                var tmpArray = new byte[stream.Length];
+                //figyelem, ha nagy a kép, akkor kifuthat az Int-ből
+                stream.Read(tmpArray, 0, (int)stream.Length);
+                mylist.PictureAsByte = tmpArray;
+            }
+            repository.SavePicture(mylist);
         }
 
         private void CardModify_Clicked(object sender, EventArgs e)

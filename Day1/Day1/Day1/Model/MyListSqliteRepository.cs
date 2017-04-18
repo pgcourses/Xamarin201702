@@ -145,7 +145,8 @@ namespace Day1.Model
 
             var myListModel = new MyListModel
             {
-                Title = myListViewmodel.Title
+                Title = myListViewmodel.Title,
+                Picture = myListViewmodel.PictureAsByte
             };
             connection.Insert(myListModel); //Elmentettük, van Id-nk
 
@@ -172,7 +173,9 @@ namespace Day1.Model
 
             var listMyListViewModel = listMyListModel.Select( // végigmegyünk minden elemen és példányosítunk ez alapján ViewModelt
                                                             l => new MyListViewModel {
+                                                                Id = l.Id,
                                                                 Title = l.Title,
+                                                                PictureAsByte = l.Picture,
                                                                 Cards = listCardModel.Where(c => c.MyListId == l.Id)
                                                                                      .Select( //Viewmodelt készítünk minden CardModel-ből
                                                                                         c=> new CardViewModel
@@ -189,12 +192,23 @@ namespace Day1.Model
             listMyListViewModel.Add(
                             new MyListViewModel
                             {
+                                Id = -1,
                                 Title = "Új lista rögzítése",
                                 IsLastPage = true
                             });
 
 
             return new ObservableCollection<MyListViewModel>(listMyListViewModel);
+        }
+
+        public void SavePicture(MyListViewModel mylistVM)
+        {
+            connection.Update(new MyListModel
+            {
+                Id = mylistVM.Id,
+                Title = mylistVM.Title,
+                Picture = mylistVM.PictureAsByte
+            });
         }
     }
 }

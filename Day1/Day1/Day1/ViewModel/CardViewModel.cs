@@ -8,10 +8,10 @@ using Xamarin.Forms;
 
 namespace Day1.Model
 {
-    public class Card : ViewModelBase
+    public class CardViewModel : ViewModelBase
     {
 
-        public Card()
+        public CardViewModel()
         {
             //PhoneCallCommand = new Command(OnPhoneCallClicked, IsExecutable);
             PhoneCallCommand = new Command(OnPhoneCallClicked);

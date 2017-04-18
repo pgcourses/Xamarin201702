@@ -94,7 +94,7 @@ namespace Day1.View
 
             //l.IsHorizontal = Width > Height;
 
-            var vm = ItemsSource as IList<MyList>;
+            var vm = ItemsSource as IList<MyListViewModel>;
             if (null == vm)
             {
                 throw new ArgumentNullException("vm");
@@ -120,7 +120,7 @@ namespace Day1.View
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
 
-            var mylist = SelectedItem as MyList;
+            var mylist = SelectedItem as MyListViewModel;
             if (!mylist.NewList.IsValid())
             {
                 //akkor üzenni, hogy nem lehet elmenteni
@@ -132,7 +132,7 @@ namespace Day1.View
             var pageIndex = Children.IndexOf(CurrentPage);
             
             //Módosítjuk az adatforrást
-            repository.AddList(new MyList { Title = mylist.NewList.NewListName });
+            repository.AddList(new MyListViewModel { Title = mylist.NewList.NewListName });
 
             //Majd a módosított adatokat lekérdezve újra beállítjuk a felületet
             ItemsSource = repository.GetLists();
@@ -144,7 +144,7 @@ namespace Day1.View
 
         private void btnCancel_Clicked(object sender, EventArgs e)
         {
-            var model = ItemsSource as IList<MyList>;
+            var model = ItemsSource as IList<MyListViewModel>;
             if (model == null)
             {
                 //throw new ArgumentException(nameof(model));
@@ -185,7 +185,7 @@ namespace Day1.View
 
             await DisplayAlert("File Location", file.Path, "OK");
 
-            var mylist = SelectedItem as MyList;
+            var mylist = SelectedItem as MyListViewModel;
 
             if (mylist==null)
             {

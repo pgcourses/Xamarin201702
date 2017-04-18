@@ -4,7 +4,7 @@ namespace Day1.Model
 {
     public interface IMyListRepository
     {
-        IList<MyList> GetLists();
-        void AddList(MyList myList);
+        IList<MyListViewModel> GetLists();
+        void AddList(MyListViewModel myList);
     }
 }

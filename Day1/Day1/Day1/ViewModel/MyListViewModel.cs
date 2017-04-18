@@ -9,14 +9,14 @@ using Xamarin.Forms;
 
 namespace Day1.Model
 {
-    public class MyList : ViewModelBase
+    public class MyListViewModel : ViewModelBase
     {
-        public MyList()
+        public MyListViewModel()
         {
-            Cards = new List<Card>();
+            Cards = new List<CardViewModel>();
         }
 
-        public List<Card> Cards { get; set; }
+        public List<CardViewModel> Cards { get; set; }
         public string Title { get; set; }
 
         // innentől Viewmodel

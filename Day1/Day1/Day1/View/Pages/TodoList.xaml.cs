@@ -204,7 +204,7 @@ namespace Day1.View
                 stream.Read(tmpArray, 0, (int)stream.Length);
                 mylist.PictureAsByte = tmpArray;
             }
-            repository.SavePicture(mylist);
+            repository.UpdateList(mylist);
         }
 
         private void CardModify_Clicked(object sender, EventArgs e)

@@ -201,7 +201,7 @@ namespace Day1.Model
             return new ObservableCollection<MyListViewModel>(listMyListViewModel);
         }
 
-        public void SavePicture(MyListViewModel mylistVM)
+        public void UpdateList(MyListViewModel mylistVM)
         {
             connection.Update(new MyListModel
             {

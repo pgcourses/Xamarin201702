@@ -6,6 +6,6 @@ namespace Day1.Model
     {
         IList<MyListViewModel> GetLists();
         void AddList(MyListViewModel myList);
-        void SavePicture(MyListViewModel mylist);
+        void UpdateList(MyListViewModel mylist);
     }
 }

@@ -25,5 +25,12 @@ namespace Xamarin201702.WebApp.Controllers
         {
             return Ok(repository.GetLists());
         }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] MyListRestApiAddModel model) //FromBody: az átadott JSON-ből szedi a paramétereket
+        {//figyelem, létrehozáskor id-t nem kapunk, ezért jobb az AddModel
+            var id = repository.AddList(model);
+            return Ok(id);
+        }
     }
 }

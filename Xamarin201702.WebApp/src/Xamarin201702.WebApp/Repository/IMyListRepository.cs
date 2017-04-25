@@ -5,7 +5,7 @@ namespace Xamarin201702.WebApp
     public interface IMyListRepository
     {
         IList<MyListRestApiModel> GetLists();
-        void AddList(MyListRestApiModel myList);
+        int AddList(MyListRestApiAddModel myList);
         void UpdateList(MyListRestApiModel mylist);
     }
 }

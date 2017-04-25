@@ -30,7 +30,7 @@ using Xamarin.Forms;
 /// </summary>
 
 
-[assembly: Xamarin.Forms.Dependency(typeof(MyListSqliteRepository))]
+//[assembly: Xamarin.Forms.Dependency(typeof(MyListSqliteRepository))]
 namespace Day1.Model
 {
     public class MyListSqliteRepository : IMyListRepository

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace Day1.Model
+namespace Xamarin201702.WebApp
 {
-    public class MyListRestApiModel
+    /// <summary>
+    /// Ugyanaz, mint a model, de nincs benne id
+    /// </summary>
+    public class MyListRestApiAddModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public byte[] Picture { get; set; }
-
         public List<CardRestApiModel> Cards { get; set; }
     }
 }

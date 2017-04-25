@@ -45,6 +45,7 @@
     <Compile Include="Data\MyListModel.cs" />
     <Compile Include="Data\SqliteDatabase.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Model\CardRestApiModel.cs" />
     <Compile Include="Model\IFileService.cs" />
     <Compile Include="Model\MyListRestApiModel.cs" />
     <Compile Include="Model\MyListRestApiRepository.cs" />

@@ -12,6 +12,7 @@ namespace Xamarin201702.WebApp
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .UseUrls("http://*:5000") //Engedélyezzük mindenhonnan a kérés kiszolgálását
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()

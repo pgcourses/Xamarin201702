@@ -11,7 +11,7 @@ namespace Xamarin201702.WebApp.Repository
 
         public MyListTestRepository()
         {
-            var list = new MyListRestApiModel { Title = "Ez az első lista" };
+            var list = new MyListRestApiModel { Id = 1, Title = "Ez az első lista" };
             list.Cards = new List<CardRestApiModel> {
                     new CardRestApiModel { Title ="1. lista 1. bejegyzés", Description = "Ez a részletes bejegyzés az 1.lista 1. bejegyzéséhez" },
                     new CardRestApiModel { Title ="1. lista 2. bejegyzés", Description = "Ez a részletes bejegyzés az 1.lista 2. bejegyzéséhez" },
@@ -20,7 +20,7 @@ namespace Xamarin201702.WebApp.Repository
             };
             data.Add(list);
             
-            list = new MyListRestApiModel { Title = "Ez a második lista" };
+            list = new MyListRestApiModel { Id = 2, Title = "Ez a második lista" };
             list.Cards = new List<CardRestApiModel> {
                     new CardRestApiModel { Title ="2. lista 1. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 1. bejegyzéséhez" },
                     new CardRestApiModel { Title ="2. lista 2. bejegyzés", Description = "Ez a részletes bejegyzés az 2.lista 2. bejegyzéséhez" },
@@ -50,7 +50,10 @@ namespace Xamarin201702.WebApp.Repository
 
         public void UpdateList(MyListRestApiModel mylist)
         {
-            throw new NotImplementedException();
+            var list = data.Single(x => x.Id == mylist.Id);
+            list.Title = mylist.Title;
+            list.Picture = mylist.Picture;
+            list.Cards = mylist.Cards;
         }
     }
 }

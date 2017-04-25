@@ -32,5 +32,19 @@ namespace Xamarin201702.WebApp.Controllers
             var id = repository.AddList(model);
             return Ok(id);
         }
+
+        [HttpPut("{id}")] //Annyiban különbözik a Create-től, hogy id-vel azonosítjuk az erőforráselemet
+        public IActionResult Update(int id, [FromBody] MyListRestApiAddModel model)
+        {
+            var list = new MyListRestApiModel
+            {
+                Id = id,
+                Title = model.Title,
+                Picture = model.Picture,
+                Cards = model.Cards
+            };
+            repository.UpdateList(list);
+            return Ok();
+        }
     }
 }

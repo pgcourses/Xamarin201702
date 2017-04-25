@@ -45,13 +45,13 @@ namespace Xamarin201702.WebApp.Controllers
 
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, loginModel.Email),
-        new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
-        new Claim(JwtRegisteredClaimNames.Iat,
-                  ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(),
-                  ClaimValueTypes.Integer64),
-        identity.FindFirst("DisneyCharacter")
-      };
+                new Claim(JwtRegisteredClaimNames.Sub, loginModel.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
+                new Claim(JwtRegisteredClaimNames.Iat,
+                          ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(),
+                          ClaimValueTypes.Integer64),
+                identity.FindFirst("DisneyCharacter")
+            };
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(

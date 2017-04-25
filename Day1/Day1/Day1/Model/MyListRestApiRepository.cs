@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using RestSharp.Portable.HttpClient;
 using System.Collections.ObjectModel;
 using RestSharp.Portable;
+using Newtonsoft.Json;
 
 /// <summary>
 ///                                                                                                   | MyListTestRepository (LIST)
@@ -108,8 +109,32 @@ namespace Day1.Model
 
         public IList<MyListViewModel> GetLists()
         {
+            var loginModel = new LoginModel
+            {
+                Email = "MickeyMouse",
+                Password = "MickeyMouseIsBoss123"
+            };
+
+            var requestLogin = new RestRequest("Jwt", Method.POST);
+            requestLogin.AddHeader("Content-Type", "application/json");
+            requestLogin.AddParameter("body", loginModel, ParameterType.RequestBody, "application/json");
+
+            var taskLogin = client.Execute<TokenModel>(requestLogin);
+
+            var loginResult = taskLogin.Result;
+
+            if (loginResult.StatusCode!=System.Net.HttpStatusCode.OK)
+            {
+                //hibakezelés
+                throw new Exception($"hiba történt: {loginResult.StatusDescription}");
+            }
+
+            //Valamiért a RestSharp nem tudja ezt azonnal, így saját kézzel deserializálunk
+            var token = JsonConvert.DeserializeObject<TokenModel>(((RestResponse)taskLogin.Result).Content);
+
             //felparaméterezzük a kérést
             var request = new RestSharp.Portable.RestRequest("MyList", RestSharp.Portable.Method.GET);
+            request.AddHeader("Authorization", $"Bearer {token.access_token}");
 
             //elkészítjük a végrehajtó műveletet
             var task = client.Execute<List<MyListRestApiModel>>(request);

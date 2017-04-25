@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A87B8503-1F6C-4DD5-895B-AEC792FD8DA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D61BBDE-081E-486B-88CF-ABC7C548FDF5}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Xamarin201702.WebApp", "src\Xamarin201702.WebApp\Xamarin201702.WebApp.xproj", "{2BDC6480-3949-4D6D-9B25-AE9AB1B52E4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BDC6480-3949-4D6D-9B25-AE9AB1B52E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BDC6480-3949-4D6D-9B25-AE9AB1B52E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BDC6480-3949-4D6D-9B25-AE9AB1B52E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BDC6480-3949-4D6D-9B25-AE9AB1B52E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2BDC6480-3949-4D6D-9B25-AE9AB1B52E4D} = {A87B8503-1F6C-4DD5-895B-AEC792FD8DA3}
+	EndGlobalSection
+EndGlobal

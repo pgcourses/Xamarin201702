@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Xamarin201702.WebApp.Controllers
 
         //Lekérdezi az összes listát és visszatér vele
         [HttpGet]
+        [Authorize(Policy = "DisneyUser")]
         public IActionResult GetLists()
         {
             return Ok(repository.GetLists());

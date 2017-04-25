@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-Xamarin201702.WebApp-4c56730e-bca7-48d1-bfca-0c886aa7a3a5",
 
   "dependencies": {
@@ -43,7 +43,10 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.IdentityModel.Tokens": "5.1.2",
+    "System.IdentityModel.Tokens.Jwt": "5.1.2",
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.1.1"
   },
 
   "tools": {

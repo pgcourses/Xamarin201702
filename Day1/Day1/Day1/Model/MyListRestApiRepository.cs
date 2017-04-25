@@ -17,6 +17,36 @@ using RestSharp.Portable;
 /// 
 /// 
 /// 
+///  Bejelentkezés és azonosítás a RestAPI használata közben: JWT (JSON Web Token)
+///  https://tools.ietf.org/html/rfc6750#section-1.2
+///  https://jwt.io/
+///  https://auth0.com/learn/json-web-tokens/
+///  és a cikk, ahonnan a WebAPI implementációt vettem:
+///  https://goblincoding.com/2016/07/03/issuing-and-authenticating-jwt-tokens-in-asp-net-core-webapi-part-i/
+///  https://goblincoding.com/2016/07/07/issuing-and-authenticating-jwt-tokens-in-asp-net-core-webapi-part-ii/
+/// ------------------------------------------------------------------------------- 
+///  Felhasználó                      Szerver
+///  (Böngésző)                      (Alkalmazás)
+///  
+/// POST login 
+/// {                 POST
+///    UserName=..., ----------->
+///    Password=... 
+/// }
+///                    HTTP 200 OK
+///                  <------------  {
+///                                    token="JWT_Token"
+///                                    (...)
+///                                 }
+///                   GET              
+/// GET ....         ------------> 
+/// Headers:  
+/// [
+///   "Authorization" : "Bearer JWT_Token"
+///   (...)
+/// ]
+///                   HTTP 200 OK
+///                  <--------------
 /// 
 /// 
 /// </summary>

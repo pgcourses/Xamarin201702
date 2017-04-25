@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 using Xamarin201702.WebApp.JwtProvider;
 
 namespace Xamarin201702.WebApp.Controllers
-{ 
+{
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class JwtController : Controller
     {
@@ -34,9 +35,9 @@ namespace Xamarin201702.WebApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Get([FromBody] LoginModel loginModel)
+        public IActionResult Get([FromBody] LoginModel loginModel)
         {
-            var identity = await GetClaimsIdentity(loginModel);
+            var identity = GetClaimsIdentity(loginModel).Result;
             if (identity == null)
             {
                 _logger.LogInformation($"Invalid username ({loginModel.Email}) or password ({loginModel.Password})");
@@ -46,7 +47,7 @@ namespace Xamarin201702.WebApp.Controllers
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, loginModel.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
+                new Claim(JwtRegisteredClaimNames.Jti, _jwtOptions.JtiGenerator().Result),
                 new Claim(JwtRegisteredClaimNames.Iat,
                           ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(),
                           ClaimValueTypes.Integer64),
@@ -72,7 +73,7 @@ namespace Xamarin201702.WebApp.Controllers
             };
 
             var json = JsonConvert.SerializeObject(response, _serializerSettings);
-            return new OkObjectResult(json);
+            return Ok(json);
         }
 
         private static void ThrowIfInvalidOptions(JwtIssuerOptions options)

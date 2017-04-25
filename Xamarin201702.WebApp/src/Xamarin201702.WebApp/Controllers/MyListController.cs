@@ -46,5 +46,12 @@ namespace Xamarin201702.WebApp.Controllers
             repository.UpdateList(list);
             return Ok();
         }
+
+        [HttpDelete("{id}")] 
+        public IActionResult Delete(int id)
+        {
+            repository.DeleteList(id);
+            return Ok();
+        }
     }
 }

@@ -43,6 +43,12 @@ namespace Xamarin201702.WebApp.Repository
             return restapimodel.Id;
         }
 
+        public void DeleteList(int id)
+        {
+            var list = data.Single(x => x.Id == id);
+            data.Remove(list);
+        }
+
         public IList<MyListRestApiModel> GetLists()
         {
             return data;

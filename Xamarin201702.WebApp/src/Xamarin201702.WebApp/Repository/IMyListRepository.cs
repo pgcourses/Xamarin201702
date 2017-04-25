@@ -7,5 +7,6 @@ namespace Xamarin201702.WebApp
         IList<MyListRestApiModel> GetLists();
         int AddList(MyListRestApiAddModel myList);
         void UpdateList(MyListRestApiModel mylist);
+        void DeleteList(int id);
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RestSharp.Portable.HttpClient;
 using System.Collections.ObjectModel;
+using RestSharp.Portable;
 
 /// <summary>
 ///                                                                                                   | MyListTestRepository (LIST)
@@ -40,12 +41,26 @@ namespace Day1.Model
 
         public void AddList(MyListViewModel myList)
         {
-            //var request = new RestSharp.Portable.RestRequest("MyList", RestSharp.Portable.Method.POST);
+            var request = new RestSharp.Portable.RestRequest("MyList", RestSharp.Portable.Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("body", myList, ParameterType.RequestBody, "application/json");
 
-            //request.Parameters.Add
+            //elkészítjük a végrehajtó műveletet
+            var task = client.Execute(request);
 
-            ////elkészítjük a végrehajtó műveletet
-            //var task = client.Execute<List<MyListRestApiModel>>(request);
+            try
+            {
+                var result = task.Result;
+                if (result.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Exception($"Nem sikerült a felvitel: {result.StatusDescription}");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public IList<MyListViewModel> GetLists()

@@ -47,6 +47,7 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\CardRestApiModel.cs" />
     <Compile Include="Model\IFileService.cs" />
+    <Compile Include="Model\MyListRestApiAddModel.cs" />
     <Compile Include="Model\MyListRestApiModel.cs" />
     <Compile Include="Model\MyListRestApiRepository.cs" />
     <Compile Include="Model\MyListSqliteRepository.cs" />

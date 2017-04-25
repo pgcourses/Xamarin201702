@@ -41,9 +41,22 @@ namespace Day1.Model
 
         public void AddList(MyListViewModel myList)
         {
+            var restapiaddmodel = new MyListRestApiAddModel
+            {
+                Title = myList.Title,
+                Picture = myList.PictureAsByte,
+                Cards = myList.Cards
+                              .Select(
+                                    x => new CardRestApiModel
+                               {
+                                   Title = x.Title,
+                                   Description = x.Description
+                               }).ToList()
+            };
+
             var request = new RestSharp.Portable.RestRequest("MyList", RestSharp.Portable.Method.POST);
             request.AddHeader("Content-Type", "application/json");
-            request.AddParameter("body", myList, ParameterType.RequestBody, "application/json");
+            request.AddParameter("body", restapiaddmodel, ParameterType.RequestBody, "application/json");
 
             //elkészítjük a végrehajtó műveletet
             var task = client.Execute(request);
@@ -114,9 +127,41 @@ namespace Day1.Model
             }
         }
 
-        public void UpdateList(MyListViewModel mylist)
+        public void UpdateList(MyListViewModel myList)
         {
-            throw new NotImplementedException();
+            var restapiaddmodel = new MyListRestApiAddModel
+            {
+                Title = myList.Title,
+                Picture = myList.PictureAsByte,
+                Cards = myList.Cards
+                              .Select(
+                                    x => new CardRestApiModel
+                                    {
+                                        Title = x.Title,
+                                        Description = x.Description
+                                    }).ToList()
+            };
+
+            var request = new RestSharp.Portable.RestRequest($"MyList/{myList.Id}", RestSharp.Portable.Method.PUT);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("body", restapiaddmodel, ParameterType.RequestBody, "application/json");
+
+            //elkészítjük a végrehajtó műveletet
+            var task = client.Execute(request);
+
+            try
+            {
+                var result = task.Result;
+                if (result.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Exception($"Nem sikerült a felvitel: {result.StatusDescription}");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
